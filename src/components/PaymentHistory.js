@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, css} from 'aphrodite';
+import {css} from 'aphrodite';
 import type from '../styles/type';
 
 class PaymentHistory extends Component {
@@ -27,9 +27,5 @@ class PaymentHistory extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default PaymentHistory;

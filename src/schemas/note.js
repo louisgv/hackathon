@@ -3,7 +3,7 @@ import Mongoose from 'mongoose';
 const { Schema } = Mongoose;
 
 const noteSchema = new Schema({
-  note: { type: String },
+  note: { type: String }
 }, {
   timestamps: true
 });

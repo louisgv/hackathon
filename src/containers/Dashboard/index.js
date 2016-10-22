@@ -4,8 +4,6 @@ import colors from '../../styles/colors';
 
 import ClientInfo from '../../components/ClientInfo';
 import PaymentHistory from '../../components/PaymentHistory';
-import {StyleSheet, css} from 'aphrodite';
-
 import { fetchClients } from '../../actions/clients';
 
 class Dashboard extends Component {
@@ -32,11 +30,5 @@ function select(state) {
     client: state.clients[Object.keys(state.clients)[0]] || {}
   };
 }
-
-const styles = StyleSheet.create({
-  main: {
-    display: 'flex'
-  }
-});
 
 export default connect(select)(Dashboard);

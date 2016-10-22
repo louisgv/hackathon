@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, css} from 'aphrodite';
+import {css} from 'aphrodite';
 import type from '../styles/type';
 
 class ClientInfo extends Component {
@@ -26,9 +26,5 @@ class ClientInfo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default ClientInfo;
