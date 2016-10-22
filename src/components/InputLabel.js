@@ -17,7 +17,7 @@ export default ({ label, value, handleChange }) => (
 
 const styles = StyleSheet.create({
   main: {
-    marginBottom: 4
+    marginBottom: 16
   },
   label: {
     marginBottom: 2

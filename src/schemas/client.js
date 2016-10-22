@@ -1,6 +1,7 @@
 import Mongoose from 'mongoose';
 
 import races from '../constants/races';
+import disabilities from '../constants/disabilities';
 
 const { Schema } = Mongoose;
 
@@ -16,13 +17,13 @@ const clientSchema = new Schema({
   },
   disabilities: [
     {
-      disabilityType: Number,
-      receivingServices: Number
+      category: { type: String, enum: disabilities },
+      is_receiving_services: Boolean
     }
   ],
 
   /* House Info */
-  home: { type: String, enum: ['House', 'Apartment'] },
+  home: { type: String, enum: ['House', 'Apartment'], default: 'House' },
   rent: Number,
   lease: String,
 
@@ -39,15 +40,15 @@ const clientSchema = new Schema({
   benefits_income: Number,
 
   /* Education */
-  lastGradeCompleted: Number,
-  schoolStatus: String,
+  last_grade_completed: Number,
+  school_status: String,
 
 
   /* Meta */
   status: { type: String, enum: ['pending', 'approved'] },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
-  paymentHistory: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
+  payment_history: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
   notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
 }, {
   timestamps: true

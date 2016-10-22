@@ -11,8 +11,8 @@ export default ({ label, value, handleChange, options }) => (
       className={css(styles.input)}
       value={value}
       onChange={e => handleChange(e.target.value)}>
-      {options.map(option => (
-        <option value={option.value}>{option.label}</option>
+      {options.map((option, i) => (
+        <option key={i} value={option.value}>{option.label}</option>
       ))}
     </select>
   </div>
@@ -20,7 +20,7 @@ export default ({ label, value, handleChange, options }) => (
 
 const styles = StyleSheet.create({
   main: {
-    marginBottom: 4
+    marginBottom: 16
   },
   label: {
     marginBottom: 2
