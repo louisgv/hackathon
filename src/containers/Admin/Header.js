@@ -22,7 +22,8 @@ export default ({ path }) => (
 
 const styles = StyleSheet.create({
   main: {
-    background: '#F1F1F1',
+    background: 'white',
+    borderBottom: `1px solid ${colors.border}`,
     height: 40,
     paddingLeft: 40,
     paddingRight: 40

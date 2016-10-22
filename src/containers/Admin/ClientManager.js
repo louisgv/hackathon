@@ -70,9 +70,8 @@ class ClientManager extends Component {
                     <div
                       style={{
                         display: 'flex',
-                        borderTop: `1px solid ${colors.border}`,
-                        borderBottom: `1px solid ${colors.border}`,
-                        background: colors.divider,
+                        border: `1px solid ${colors.border}`,
+                        background: colors.background,
                         paddingLeft: 8,
                         paddingRight: 8
                       }}>
@@ -86,20 +85,29 @@ class ClientManager extends Component {
                           display: 'flex',
                           paddingLeft: 8,
                           paddingRight: 8,
-                          borderBottom: `1px solid ${colors.border}`
+                          borderBottom: `1px solid ${colors.border}`,
+                          borderLeft: `1px solid ${colors.border}`,
+                          borderRight: `1px solid ${colors.border}`
                         }}
                         key={i}>
                         <div style={{flex: 1}}>{disability.category}</div>
                         <div style={{flex: 1}}>
                           {disability.is_receiving_services ? 'Yes' : 'No'}
                         </div>
-                        <div style={{width: 32}}>
+                        <div style={{width: 32, color: '#BAC2D0', textAlign: 'right'}}>
                           <i onClick={() => this.removeDisability(i)} className="fa fa-trash"/>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div style={{background: colors.background, padding: 8, border: '1px solid #ececec'}}>
+                  <div
+                    style={{
+                      background: colors.background,
+                      padding: 8,
+                      borderLeft: '1px solid #ececec',
+                      borderRight: '1px solid #ececec',
+                      borderBottom: '1px solid #ececec'
+                    }}>
                     <div className={css(type.label)}>Add Disability</div>
                     <div style={{display: 'flex', alignItems: 'center'}}>
                       <select
@@ -122,7 +130,7 @@ class ClientManager extends Component {
                         <option value="">No</option>
                       </select>
                       <i
-                        style={{fontSize: 18, color: colors.light, cursor: 'pointer'}}
+                        style={{fontSize: 18, color: '#858E9D', cursor: 'pointer'}}
                         onClick={() => this.addDisability()}
                         className="fa fa-plus-square"
                       />
@@ -139,14 +147,14 @@ class ClientManager extends Component {
                     className={css(styles.bigOption, client.home_type === 'House' && styles.bigOptionSelected)}
                     style={{marginRight: 8}}
                     onClick={() => this.updateClient({home_type: 'House'})}>
-                    <i className="fa fa-home" style={{marginRight: 4}}/>
+                    <i className="fa fa-home" style={{marginRight: 4, fontSize: 16}}/>
                     <div>House</div>
                   </div>
                   <div
                     className={css(styles.bigOption, client.home_type === 'Apartment' && styles.bigOptionSelected)}
                     style={{marginLeft: 8}}
                     onClick={() => this.updateClient({home_type: 'Apartment'})}>
-                    <i className="fa fa-building" style={{marginRight: 4}}/>
+                    <i className="fa fa-building" style={{marginRight: 4, fontSize: 15}}/>
                     <div>Apartment</div>
                   </div>
                 </div>
@@ -373,7 +381,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     fontSize: 15,
-    color: colors.light,
+    color: '#BAC2D0',
     cursor: 'pointer'
   },
   bigOptionSelected: {

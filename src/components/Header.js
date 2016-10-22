@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     zIndex: 1,
-    borderBottom: `1px solid ${colors.divider}`
+    borderBottom: `1px solid ${colors.border}`
   },
   brand: {
     display: 'flex',
