@@ -37,7 +37,7 @@ export default function ({ getState }) {
           return cb(null, [
             ...all,
             { path: 'dashboard', component: Dashboard }
-          ])
+          ]);
         }
       }
       /* logged out routes */
