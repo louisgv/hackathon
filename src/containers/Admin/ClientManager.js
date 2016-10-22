@@ -11,6 +11,7 @@ import type from '../../styles/type';
 import colors from '../../styles/colors';
 import races from '../../constants/races';
 import disabilities from '../../constants/disabilities';
+import wars from '../../constants/wars';
 
 class ClientManager extends Component {
   componentDidMount() {
@@ -170,16 +171,44 @@ class ClientManager extends Component {
             <div className={css(styles.section)}>
               <div className={css(type.subHeading, styles.heading)}>Veteran Status</div>
               <LabelWrapper label="Is the client a veteran">
-                <div style={{display: 'flex', alignItems: 'center'}} onClick={() => this.updateClient({veteran: true})}>
+                <div style={{display: 'flex', alignItems: 'center'}}
+                     onClick={() => this.updateClient({veteran: true})}>
                   <input type="radio" name="isClientVeteran" checked={client.veteran}/>
                   <div style={{marginLeft: 4}}>Yes</div>
                 </div>
 
-                <div style={{display: 'flex'}} onClick={() => this.updateClient({veteran: false})}>
-                  <input type="radio" name="isClientVeteran" checked={!client.veteran}/>
+                <div style={{display: 'flex'}}>
+                  <input
+                    type="radio"
+                    name="isClientVeteran"
+                    checked={!client.veteran}
+                    onChange={() => this.updateClient({veteran: false})}
+                  />
                   <div style={{marginLeft: 4}}>No</div>
                 </div>
               </LabelWrapper>
+              {client.veteran &&
+              <LabelWrapper label="Wars Served">
+                {wars.map((war) => {
+                  const servedIndex = client.wars_served.findIndex(w => w === war);
+                  const hasServed = servedIndex >= 0;
+                  return (
+                    <div
+                      key={war}
+                      style={{display: 'flex', alignItems: 'center'}}>
+                      <input
+                        onChange={() => this.updateClient({
+                          wars_served: update(client.wars_served || [], hasServed ? {$splice: [[servedIndex, 1]]} : {$push: [war]})
+                        })}
+                        type="checkbox"
+                        checked={hasServed}
+                      />
+                      <div>{war}</div>
+                    </div>
+                  );
+                })}
+              </LabelWrapper>
+              }
             </div>
           </div>
           <div className={css(styles.right)}>

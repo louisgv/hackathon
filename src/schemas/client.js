@@ -2,6 +2,7 @@ import Mongoose from 'mongoose';
 
 import races from '../constants/races';
 import disabilities from '../constants/disabilities';
+import wars from '../constants/wars';
 
 const { Schema } = Mongoose;
 
@@ -30,10 +31,7 @@ const clientSchema = new Schema({
 
   /* Veteran Status */
   veteran: Boolean,
-  wars: [{
-    type: String,
-    enum: ['World War II', 'Korean War', 'Vietnam War', 'Desert Storm', 'Afghan', 'Iraq', 'Other']
-  }],
+  wars_served: [{ type: String, enum: wars }],
 
   /* Fiscal Info */
   employed: Boolean,
