@@ -245,6 +245,22 @@ class ClientManager extends Component {
                   <div style={{marginLeft: 4}}>No</div>
                 </div>
               </LabelWrapper>
+              <div style={{display: 'flex'}}>
+                <div style={{flex: 1, marginRight: 16}}>
+                  <InputLabel
+                    label="Earned Income"
+                    value={client.earned_income}
+                    handleChange={earned_income => this.updateClient({earned_income})}
+                  />
+                </div>
+                <div style={{flex: 1}}>
+                  <InputLabel
+                    label="Benefits Income"
+                    value={client.benefits_income}
+                    handleChange={benefits_income => this.updateClient({benefits_income})}
+                  />
+                </div>
+              </div>
             </div>
 
           </div>
