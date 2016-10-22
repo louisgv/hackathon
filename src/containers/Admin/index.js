@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import Header from './Header';
+
 class Admin extends Component {
   render() {
     return (
       <div>
-        <div>Admin Console</div>
+        <Header />
         {this.props.children}
       </div>
     );
