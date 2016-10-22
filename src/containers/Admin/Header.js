@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 import colors from '../../styles/colors';
 
 export default ({ path }) => (
-  <div>
+  <div className={css(styles.main)}>
     <div className={css(styles.container)}>
       <div className={css(styles.nav)}>
         <a
@@ -21,17 +21,24 @@ export default ({ path }) => (
 
 
 const styles = StyleSheet.create({
-  container: {
+  main: {
     background: '#F1F1F1',
+    height: 40,
     paddingLeft: 40,
-    paddingRight: 40,
+    paddingRight: 40
+  },
+  container: {
     display: 'flex',
     alignItems: 'center',
-    height: 40
+    height: '100%',
+    maxWidth: 1000,
+    margin: 'auto'
   },
   nav: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: -16,
+    marginLeft: -16
   },
   links: {
     paddingLeft: 16,

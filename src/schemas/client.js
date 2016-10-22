@@ -3,6 +3,7 @@ import Mongoose from 'mongoose';
 import races from '../constants/races';
 import disabilities from '../constants/disabilities';
 import wars from '../constants/wars';
+import Note from './note';
 
 const { Schema } = Mongoose;
 
@@ -38,17 +39,13 @@ const clientSchema = new Schema({
   earned_income: Number,
   benefits_income: Number,
 
-  /* Education */
-  last_grade_completed: Number,
-  school_status: String,
-
 
   /* Meta */
   status: { type: String, enum: ['pending', 'approved'] },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
   payment_history: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
-  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
+  notes: [Note]
 }, {
   timestamps: true
 });

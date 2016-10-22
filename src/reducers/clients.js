@@ -1,6 +1,10 @@
 import update from 'react-addons-update';
 
-import { RECEIVED_CLIENTS, RECEIVED_CLIENT, CLIENT_UPDATED } from '../constants/actionTypes';
+import {
+  RECEIVED_CLIENTS,
+  RECEIVED_CLIENT,
+  CLIENT_UPDATED,
+} from '../constants/actionTypes';
 
 export default function (state = {}, action) {
   switch (action.type) {

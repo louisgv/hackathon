@@ -3,10 +3,11 @@ import update from 'react-addons-update';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 
+import Note from './Note';
 import InputLabel from '../../components/InputLabel';
 import LabelWrapper from '../../components/LabelWrapper';
 import SelectLabel from '../../components/SelectLabel';
-import { fetchClient, updateClient } from '../../actions/clients';
+import { fetchClient, updateClient, addNote } from '../../actions/clients';
 import type from '../../styles/type';
 import colors from '../../styles/colors';
 import races from '../../constants/races';
@@ -14,6 +15,13 @@ import disabilities from '../../constants/disabilities';
 import wars from '../../constants/wars';
 
 class ClientManager extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tempNote: ''
+    };
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchClient(this.props.params.id));
   }
@@ -22,10 +30,14 @@ class ClientManager extends Component {
     this.props.dispatch(updateClient(this.props.params.id, update));
   }
 
+  addNote(note) {
+    this.props.dispatch(addNote(this.props.params.id, note));
+  }
+
   render() {
     const { client } = this.props;
     return (
-      <div>
+      <div className={css(styles.main)}>
         <div className={css(type.pageTitle, styles.title)}>{client.name}</div>
         <div className={css(styles.wrapper)}>
           <div className={css(styles.left)}>
@@ -87,9 +99,9 @@ class ClientManager extends Component {
                       </div>
                     ))}
                   </div>
-                  <div style={{background: '#f3f3f3', padding: 8, border: '1px solid #ececec'}}>
+                  <div style={{background: colors.background, padding: 8, border: '1px solid #ececec'}}>
                     <div className={css(type.label)}>Add Disability</div>
-                    <div style={{display: 'flex'}}>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
                       <select
                         style={{flex: 1, marginRight: 8}}
                         className={css(styles.inlineSelect)}
@@ -110,7 +122,7 @@ class ClientManager extends Component {
                         <option value="">No</option>
                       </select>
                       <i
-                        style={{fontSize: 24, color: colors.secondary, cursor: 'pointer'}}
+                        style={{fontSize: 18, color: colors.light, cursor: 'pointer'}}
                         onClick={() => this.addDisability()}
                         className="fa fa-plus-square"
                       />
@@ -265,11 +277,29 @@ class ClientManager extends Component {
 
           </div>
           <div className={css(styles.right)}>
+            <div className={css(type.subHeading, styles.heading)}>Notes</div>
+            <div style={{paddingLeft: 24}}>
+              {client.notes && client.notes.map(note => (
+                <Note key={note._id} type={note.note} date={note.createdAt}/>
+              ))}
+              <Note client={client} type="creation" date={client.createdAt}/>
+            </div>
+
+            <div className={css(type.subHeading, styles.heading)}>Status</div>
+            <InputLabel
+              label="Add a note:"
+              value={this.state.tempNote}
+              handleChange={tempNote => this.setState({tempNote})}
+              handleEnter={() => {
+                if (['creation'].indexOf(this.state.tempNote) >= 0) {
+                  return;
+                }
+                this.setState({tempNote: ''});
+                this.addNote(this.state.tempNote);
+              }}
+            />
           </div>
         </div>
-
-
-        <div onClick={() => this.updateClient({status: 'approved'})}>Do The CoSign Thing</div>
       </div>
     );
   }
@@ -290,6 +320,11 @@ class ClientManager extends Component {
 }
 
 const styles = StyleSheet.create({
+  main: {
+    paddingLeft: 40,
+    paddingRight: 40,
+    boxSizing: 'border-box'
+  },
   title: {
     textAlign: 'center',
     marginBottom: 32,
@@ -300,9 +335,8 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     display: 'flex',
-    paddingLeft: 40,
-    paddingRight: 40,
-    boxSizing: 'border-box'
+    maxWidth: 1000,
+    margin: 'auto'
   },
 
   left: {

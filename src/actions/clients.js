@@ -1,6 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
-import { RECEIVED_CLIENTS, RECEIVED_CLIENT, CLIENT_UPDATED } from '../constants/actionTypes';
+import {
+  RECEIVED_CLIENTS,
+  RECEIVED_CLIENT,
+  CLIENT_UPDATED
+} from '../constants/actionTypes';
 
 export function fetchClients() {
   return dispatch => {
@@ -47,5 +51,27 @@ export function updateClient(id, update) {
       },
       body: JSON.stringify(update)
     });
+  };
+}
+
+export function addNote(id, note) {
+  return dispatch => {
+    fetch(`/api/client/${id}/note`, {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ note })
+    })
+      .then(res => res.json())
+      .then(notes => {
+        dispatch({
+          type: CLIENT_UPDATED,
+          id,
+          update: {notes}
+        });
+      });
   };
 }

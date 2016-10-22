@@ -15,6 +15,6 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   label: {
-    marginBottom: 2
+    marginBottom: 4
   }
 });

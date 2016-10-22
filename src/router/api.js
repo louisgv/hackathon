@@ -123,4 +123,12 @@ router.put('/client/:id', admin, (req, res) => {
   });
 });
 
+router.post('/client/:id/note', admin, (req, res) => {
+  Client.findById(req.params.id, (_, client) => {
+    client.notes.push(req.body);
+    client.save();
+    res.json(client.notes);
+  });
+});
+
 export default router;

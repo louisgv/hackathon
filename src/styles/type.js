@@ -36,7 +36,8 @@ export default StyleSheet.create({
     color: colors.dark
   },
   label: {
-    fontSize: 13,
+    textTransform: 'uppercase',
+    fontSize: 12,
     fontWeight: 600
   },
   note: {
