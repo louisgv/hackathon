@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-import {USER_UPDATED} from '../constants/actionTypes';
+import {USER_UPDATED, RECEIVED_CLIENT} from '../constants/actionTypes';
 
 export function updateUser(update) {
   return dispatch => {
@@ -25,5 +25,18 @@ export function updateUser(update) {
         });
 
     });
+  };
+}
+
+export function fetchClientFromUser() {
+  return (dispatch, getState) => {
+    fetch(`/api/client`, { credentials: 'same-origin' })
+      .then(res => res.json())
+      .then(client => {
+        dispatch({
+          type: RECEIVED_CLIENT,
+          client
+        });
+      });
   };
 }
