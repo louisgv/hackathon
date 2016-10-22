@@ -26,9 +26,14 @@ export default StyleSheet.create({
   },
   subHeading: {
     fontSize: 18,
+    fontWeight: 600,
     lineHeight: '32px',
     textDecoration: 'none',
     color: colors.dark
+  },
+  label: {
+    fontSize: 13,
+    fontWeight: 600
   },
   note: {
     fontSize: 12,

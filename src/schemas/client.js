@@ -1,5 +1,7 @@
 import Mongoose from 'mongoose';
 
+import races from '../constants/races';
+
 const { Schema } = Mongoose;
 
 const clientSchema = new Schema({
@@ -9,7 +11,8 @@ const clientSchema = new Schema({
   phone: String,
   race: {
     type: String,
-    enum: ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other']
+    enum: races,
+    default: 'Other'
   },
   disabilities: [
     {
