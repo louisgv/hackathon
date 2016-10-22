@@ -34,7 +34,6 @@ router.put('/user/password', (req, res) => {
 });
 
 router.post('/invite', (req, res) => {
-  console.log(req.body);
   const newInvite = new Invite(req.body);
   newInvite.save();
   mail(newInvite.client_email, 'You have been invited to join us', invitation(newInvite._id));
@@ -43,7 +42,17 @@ router.post('/invite', (req, res) => {
 
 router.get('/invite/:id', (req, res) => {
   Invite.findById(req.params.id, (err, invite) => {
-    if(err || !invite){
+    if(err || !invite) {
+      return res.sendStatus(404);
+    }
+
+    res.json(invite);
+  });
+});
+
+router.put('/invite/:id/accept', (req, res) => {
+  Invite.findByIdAndUpdate(req.params.id, {accepted_on: Date.now()}, {new: true}, (err, invite) => {
+    if(err || !invite) {
       return res.sendStatus(404);
     }
 
