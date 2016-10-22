@@ -1,4 +1,4 @@
-import {StyleSheet} from 'aphrodite';
+import { StyleSheet } from 'aphrodite';
 
 import colors from './colors';
 
@@ -17,8 +17,15 @@ export default StyleSheet.create({
     fontSize: 72,
     lineHeight: '96px'
   },
+  title: {
+    fontSize: 22,
+    fontWeight: 600,
+    lineHeight: '32px',
+    textDecoration: 'none',
+    color: colors.dark
+  },
   subHeading: {
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: '32px',
     textDecoration: 'none',
     color: colors.dark

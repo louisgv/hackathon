@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { StyleSheet, css } from 'aphrodite';
 
 import { fetchClient, updateClient } from '../../actions/clients';
+import type from '../../styles/type';
 
 class ClientManager extends Component {
   componentDidMount() {
@@ -16,7 +18,16 @@ class ClientManager extends Component {
     const { client } = this.props;
     return (
       <div>
-        <div>Client page will Go here</div>
+        <div className={css(type.title, styles.title)}>{client.name}</div>
+        <div className={css(styles.wrapper)}>
+          <div className={css(styles.left)}>
+            <div className={css(type.subHeading)}>Personal Info</div>
+          </div>
+          <div className={css(styles.right)}>
+          </div>
+        </div>
+
+
         <input
           placeholder="Name"
           value={client.name}
@@ -37,6 +48,29 @@ class ClientManager extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    textAlign: 'center',
+    marginBottom: 32
+  },
+  wrapper: {
+    display: 'flex',
+    paddingLeft: 32,
+    paddingRight: 32,
+    boxSizing: 'border-box'
+  },
+
+  left: {
+    flex: 1,
+    paddingRight: 64,
+    boxSizing: 'border-box'
+  },
+
+  right: {
+    width: 384
+  }
+});
 
 function select(state) {
   return {

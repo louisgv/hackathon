@@ -3,26 +3,32 @@ import Mongoose from 'mongoose';
 const { Schema } = Mongoose;
 
 const clientSchema = new Schema({
+  /* Personal Info */
   name: String,
   email: String,
   phone: String,
-
-  status: { type: String, enum: ['pending', 'approved'] },
-
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
-  invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
-  home: { type: String, enum: ['House', 'Apartment'] },
-  rent: Number,
-  lease: String,
-  paymentHistory: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
   race: {
     type: String,
     enum: ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other']
   },
-  military: {
+
+  /* House Info */
+  home: { type: String, enum: ['House', 'Apartment'] },
+  rent: Number,
+  lease: String,
+
+  /* Meta */
+  status: { type: String, enum: ['pending', 'approved'] },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
+  paymentHistory: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
+
+  /* Veteran Status */
+  veteran: Boolean,
+  wars: [{
     type: String,
     enum: ['World War II', 'Korean War', 'Vietnam War', 'Desert Storm', 'Afghan', 'Iraq', 'Other']
-  },
+  }],
   earned_income: Number,
   benefits_income: Number,
 
