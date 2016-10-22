@@ -21,6 +21,13 @@ function mustBeLoggedIn(req, res, next) {
   next();
 }
 
+function mustBeAdmin(req, res, next) {
+  if (!req.user.role === 'admin') {
+    return res.redirect('/login');
+  }
+  next();
+}
+
 function allRoutes(req, res, next, markup = '') {
   res.render('app.ejs', {
     markup,
@@ -31,16 +38,16 @@ function allRoutes(req, res, next, markup = '') {
         currentUser: req.user ? req.user._id : null,
         pendingLoads: {}
       },
-      users: req.user ? {[req.user._id]: req.user} : {}
+      users: req.user ? { [req.user._id]: req.user } : {}
     })
   });
 }
 
 router.get('/', allRoutes);
-router.get('/test', mustBeLoggedOut, allRoutes);
 router.get('/login', mustBeLoggedOut, allRoutes);
 router.get('/signup', mustBeLoggedOut, allRoutes);
-router.get('/account*', mustBeLoggedIn, allRoutes);
+router.get('/admin*', mustBeLoggedIn, mustBeAdmin, allRoutes);
+router.get('/invite*', mustBeLoggedOut, allRoutes);
 
 function authenticate(req, res, next) {
   passport.authenticate('local', function (err, user) {
@@ -57,8 +64,8 @@ function authenticate(req, res, next) {
 }
 
 router.post('/register', (req, res, next) => {
-  const {first_name, last_name, email, password} = req.body;
-  const newUser = new User({first_name, last_name, email});
+  const { first_name, last_name, email, password } = req.body;
+  const newUser = new User({ first_name, last_name, email });
 
   User.register(newUser, password, function (err) {
     if (err) {
