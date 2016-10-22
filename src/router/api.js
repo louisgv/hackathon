@@ -41,5 +41,14 @@ router.post('/invite', (req, res) => {
   res.json(newInvite);
 });
 
+router.get('/invite/:id', (req, res) => {
+  Invite.findById(req.params.id, (err, invite) => {
+    if(err || !invite){
+      return res.sendStatus(404);
+    }
+
+    res.json(invite);
+  });
+});
 
 export default router;
