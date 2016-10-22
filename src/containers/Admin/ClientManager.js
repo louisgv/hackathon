@@ -79,15 +79,30 @@ class ClientManager extends Component {
                       <div className={css(type.label)} style={{flex: 1}}>Receiving Services</div>
                       <div style={{width: 32}}/>
                     </div>
+                    {(!client.disabilities || !client.disabilities.length) &&
+                    <div
+                      style={{
+                        background: colors.background,
+                        borderLeft: `1px solid ${colors.border}`,
+                        borderRight: `1px solid ${colors.border}`,
+                        borderBottom: `1px solid ${colors.border}`,
+                        textAlign: 'center',
+                        color: colors.light,
+                        paddingTop: 8,
+                        paddingBottom: 8,
+                        opacity: 0.8
+                      }}>
+                      No Disabilities
+                    </div>
+                    }
+
                     {client.disabilities && client.disabilities.map((disability, i) => (
                       <div
                         style={{
                           display: 'flex',
                           paddingLeft: 8,
                           paddingRight: 8,
-                          borderBottom: `1px solid ${colors.border}`,
-                          borderLeft: `1px solid ${colors.border}`,
-                          borderRight: `1px solid ${colors.border}`
+                          borderBottom: `1px solid ${colors.border}`
                         }}
                         key={i}>
                         <div style={{flex: 1}}>{disability.category}</div>
@@ -244,41 +259,45 @@ class ClientManager extends Component {
 
             <div className={css(styles.section)}>
               <div className={css(type.subHeading, styles.heading)}>Financial Information</div>
-              <LabelWrapper label="Is the client employed">
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                  <input
-                    type="radio"
-                    name="isClientEmployed"
-                    checked={client.employed}
-                    onChange={() => this.updateClient({employed: true})}
-                  />
-                  <div style={{marginLeft: 4}}>Yes</div>
-                </div>
-
-                <div style={{display: 'flex'}}>
-                  <input
-                    type="radio"
-                    name="isClientEmployed"
-                    checked={!client.employed}
-                    onChange={() => this.updateClient({employed: false})}
-                  />
-                  <div style={{marginLeft: 4}}>No</div>
-                </div>
-              </LabelWrapper>
               <div style={{display: 'flex'}}>
-                <div style={{flex: 1, marginRight: 16}}>
-                  <InputLabel
-                    label="Earned Income"
-                    value={client.earned_income}
-                    handleChange={earned_income => this.updateClient({earned_income})}
-                  />
+                <div style={{flex: 1}}>
+                  <LabelWrapper label="Is the client employed">
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                      <input
+                        type="radio"
+                        name="isClientEmployed"
+                        checked={client.employed}
+                        onChange={() => this.updateClient({employed: true})}
+                      />
+                      <div style={{marginLeft: 4}}>Yes</div>
+                    </div>
+
+                    <div style={{display: 'flex'}}>
+                      <input
+                        type="radio"
+                        name="isClientEmployed"
+                        checked={!client.employed}
+                        onChange={() => this.updateClient({employed: false})}
+                      />
+                      <div style={{marginLeft: 4}}>No</div>
+                    </div>
+                  </LabelWrapper>
                 </div>
                 <div style={{flex: 1}}>
-                  <InputLabel
-                    label="Benefits Income"
-                    value={client.benefits_income}
-                    handleChange={benefits_income => this.updateClient({benefits_income})}
-                  />
+                  <div style={{marginBottom: 16}}>
+                    <InputLabel
+                      label="Earned Income"
+                      value={client.earned_income}
+                      handleChange={earned_income => this.updateClient({earned_income})}
+                    />
+                  </div>
+                  <div style={{marginBottom: 16}}>
+                    <InputLabel
+                      label="Benefits Income"
+                      value={client.benefits_income}
+                      handleChange={benefits_income => this.updateClient({benefits_income})}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
