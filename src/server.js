@@ -25,7 +25,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'ejs');
 
-mongoose.connect('mongodb://localhost/osh');
+mongoose.connect(process.env.MONGODB_URI);
 
 // uncomment after pla cing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

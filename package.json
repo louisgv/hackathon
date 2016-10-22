@@ -1,5 +1,5 @@
 {
-  "name": "OneSpace Hackathon",
+  "name": "OneSpaceHack",
   "version": "1.0.0",
   "description": "Onespace hackathon node app",
   "main": "webpack.config.js",
