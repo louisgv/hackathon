@@ -9,6 +9,8 @@ const inviteSchema = new Schema({
   client_name: String,
   client_email: String,
   client_phone: String,
+  viewed_on: Date,
+  accepted_on: Date
 }, {
   timestamps: true
 });

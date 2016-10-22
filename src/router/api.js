@@ -1,6 +1,9 @@
 import Express from 'express';
 
 import User from '../schemas/user';
+import Invite from '../schemas/invite';
+import mail from '../utils/mail';
+import invitation from '../utils/emails/invitation';
 
 const router = Express.Router({mergeParams: true});
 
@@ -29,5 +32,14 @@ router.put('/user/password', (req, res) => {
     });
   });
 });
+
+router.post('/invite', (req, res) => {
+  console.log(req.body);
+  const newInvite = new Invite(req.body);
+  newInvite.save();
+  mail(newInvite.client_email, 'You have been invited to join us', invitation(newInvite._id));
+  res.json(newInvite);
+});
+
 
 export default router;

@@ -56,6 +56,7 @@ class Invite extends Component {
             value={s.clientPhone}
             onChange={e => this.setState({clientPhone: e.target.value})}
           />
+          <input type="submit" value="invite"/>
         </form>
       </div>
     );
@@ -77,6 +78,10 @@ class Invite extends Component {
     this.setState({ error: null, inviteSent: true });
     fetch('/api/invite', {
       method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(invite)
     });
   }
