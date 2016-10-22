@@ -6,13 +6,7 @@ const {Schema} = Mongoose;
 const userSchema = new Schema({
   email: String,
   password: {type: String},
-  first_name: {type: String, required: [true, 'What is your first name?']},
-  last_name: {type: String, required: [true, 'What is your last name?']},
-  picture: String,
-  admin: Boolean,
-  courses: [{
-    messageIndex: Number, messages: [{}]
-  }]
+  role: { type: String, enum: ['admin', 'client'] }
 }, {
   timestamps: true
 });
