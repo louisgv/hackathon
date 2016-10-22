@@ -1,36 +1,44 @@
 import Mongoose from 'mongoose';
 
-const {Schema} = Mongoose;
+const { Schema } = Mongoose;
 
 const clientSchema = new Schema({
   name: String,
   email: String,
   phone: String,
 
-  status: {type: String, enum: ['pending', 'approved']},
+  status: { type: String, enum: ['pending', 'approved'] },
 
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
-  invite: {type: Schema.Types.ObjectId, ref: 'Invite'},
-  home: {type: String, enum: ['House', 'Apartment']},
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
+  home: { type: String, enum: ['House', 'Apartment'] },
   rent: Number,
   lease: String,
-  paymentHistory: [{type: Schema.Types.ObjectId, ref: 'Payment'}],
-  race: {type: String, enum: ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other'] },
-  military: { type: String, enum: ['World War II', 'Korean War', 'Vietnam War', 'Desert Storm', 'Afghan', 'Iraq', 'Other'] },
-  income: [
-      { totalMonthlyIncome: Number },
-      { earned: Number },
-      { benefits: Number }
-  ],
+  paymentHistory: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
+  race: {
+    type: String,
+    enum: ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other']
+  },
+  military: {
+    type: String,
+    enum: ['World War II', 'Korean War', 'Vietnam War', 'Desert Storm', 'Afghan', 'Iraq', 'Other']
+  },
+  earned_income: Number,
+  benefits_income: Number,
+
   disabilities: [
-      { disabilityType: Number },
-      { receivingServices: Number }
+    {
+      disabilityType: Number,
+      receivingServices: Number
+    }
   ],
   education: [
-      { lastGradeCompleted: Number },
-      { schoolStatus: String }
+    {
+      lastGradeCompleted: Number,
+      schoolStatus: String
+    }
   ],
-  notes: [{type: Schema.Types.ObjectId, ref: 'Note'}]
+  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
 }, {
   timestamps: true
 });
