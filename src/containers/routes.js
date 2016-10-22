@@ -16,7 +16,7 @@ export default function ({ getState }) {
   return {
     path: '/',
     component: App,
-    indexRoute: { component: Landing },
+    indexRoute: { component: user && !(user.role === 'admin') ? Dashboard : Landing },
     getChildRoutes(_, cb) {
       if (user) {
         console.log(user);
@@ -31,12 +31,6 @@ export default function ({ getState }) {
                 { path: 'client/:id', component: ClientManager }
               ]
             }
-          ]);
-        }
-        if (user.role === 'client') {
-          return cb(null, [
-            ...all,
-            { path: 'dashboard', component: Dashboard }
           ]);
         }
       }

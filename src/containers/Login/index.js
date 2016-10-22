@@ -64,9 +64,6 @@ class Login extends Component {
         if (user.role === 'admin') {
           return window.location.href = '/admin';
         }
-        if (user.role === 'client') {
-          return window.location.href = '/dashboard';
-        }
         window.location.href = '/';
       })
       .catch(error => this.setState({ error, loading: false }));

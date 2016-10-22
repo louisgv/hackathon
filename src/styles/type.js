@@ -13,6 +13,10 @@ export const leading = {
 };
 
 export default StyleSheet.create({
+  heading: {
+    fontSize: 72,
+    lineHeight: '96px'
+  },
   subHeading: {
     fontSize: 20,
     lineHeight: '32px',
