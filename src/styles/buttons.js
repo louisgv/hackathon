@@ -22,6 +22,16 @@ const button = {
 };
 
 export default StyleSheet.create({
+  xlarge: {
+    ...button,
+    alignSelf: 'center',
+    fontSize: 24,
+    height: 48,
+    lineHeight: '44px',
+    paddingLeft: 40,
+    paddingRight: 40,
+    borderRadius: 4
+  },
   large: {
     ...button,
     alignSelf: 'center',
@@ -40,6 +50,12 @@ export default StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     borderRadius: 2
+  },
+  secondary: {
+    ...button,
+    background: 'white',
+    color: colors.secondary,
+    border: `2px solid ${colors.secondary}`
   },
   text: {
     textDecoration: 'none',

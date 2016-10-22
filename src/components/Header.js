@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import {Link} from 'react-router';
 
-import Menu from './Menu';
-
 import colors from '../styles/colors';
-import type from '../styles/type';
 import buttons from '../styles/buttons';
 
 class Header extends Component {
@@ -17,63 +14,13 @@ class Header extends Component {
   }
 
   render() {
-    const {name, email, isLoggedIn, picture} = this.props;
+    const {isLoggedIn} = this.props;
     return (
       <div className={css(styles.header)}>
-        <Link to="/">OneSpace Hack</Link>
-        {isLoggedIn &&
-        <div>
-          <div
-            className="accountButton"
-            onClick={() => this.setState({menuOpen: !this.state.menuOpen})}>
-            <div
-              className={css(styles.profilePicture)}
-              style={{backgroundImage: `url("${picture || '/default-profile-picture.svg'}")`}}
-            />
-          </div>
-          {this.state.menuOpen &&
-          <div className={css(styles.menu)}>
-            <Menu
-              handleClose={(e) => {
-                let el = e.target;
-                let isButton = false;
-
-                while (el.parentNode && !isButton) {
-                  if(el.className.indexOf('accountButton') >= 0) {
-                    isButton = true;
-                  } else {
-                    el = el.parentNode;
-                  }
-                }
-                if (!isButton) {
-                  this.setState({menuOpen: false});
-                }
-              }}
-              options={[
-                {label: 'Profile', href: '/account/profile'},
-                {label: 'Account Settings', href: '/account/settings'},
-                {label: 'Password', href: '/account/password'},
-                {label: 'Sign out', href: '/logout', section: true}
-              ]}
-              top={(
-                <div className={css(styles.menuTop)}>
-                  <div
-                    className={css(styles.profilePicture, styles.profilePictureLarge)}
-                    style={{backgroundImage: `url("${picture || '/default-profile-picture.svg'}")`}}
-                  />
-                  <div style={{marginTop: 8, marginBottom: -6}} className={css(type.subHeading)}>{name}</div>
-                  <div style={{color: '#999999'}}>{email}</div>
-                </div>
-              )}
-            />
-          </div>
-          }
-        </div>
-        }
+        <Link to="/">SituationHandler</Link>
         {!isLoggedIn &&
         <div className={css(styles.right)}>
-          <Link to="/login" className={css(buttons.text)} style={{marginRight: 16}}>Log in</Link>
-          <Link to="/signup" className={css(buttons.small)}>Sign up</Link>
+          <Link to="/login" className={css(buttons.small, buttons.secondary)} style={{marginRight: 16}}>Client Login</Link>
         </div>
         }
       </div>

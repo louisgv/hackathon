@@ -20,7 +20,7 @@ class App extends Component {
       <div className={css(styles.main, layout.main)}>
         <Header
           isLoggedIn={!!user._id}
-          name={`${user.first_name} ${user.last_name}`}
+          name={user.name}
           email={user.email}
           picture={user.picture}
           loading={loading}
