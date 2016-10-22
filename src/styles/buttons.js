@@ -26,10 +26,10 @@ export default StyleSheet.create({
     ...button,
     alignSelf: 'center',
     fontSize: 24,
-    height: 48,
-    lineHeight: '44px',
-    paddingLeft: 40,
-    paddingRight: 40,
+    height: 64,
+    lineHeight: '64px',
+    paddingLeft: 48,
+    paddingRight: 48,
     borderRadius: 4
   },
   large: {
