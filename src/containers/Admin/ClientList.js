@@ -27,7 +27,7 @@ class ClientList extends Component {
                 <Link to={`/admin/client/${client._id}`} key={client._id} className={css(styles.link)}>{client.name}</Link>
               </td>
               <td className={css(styles.tableRowHeader, styles.tableColumn)}>
-                <span>Pending</span>
+                <span>{client.status}</span>
               </td>
               <td className={css(styles.tableRowHeader, styles.tableColumn)}>
                 $100

@@ -4,6 +4,7 @@ import races from '../constants/races';
 import disabilities from '../constants/disabilities';
 import wars from '../constants/wars';
 import Note from './note';
+import Payment from './payment';
 
 const { Schema } = Mongoose;
 
@@ -41,10 +42,10 @@ const clientSchema = new Schema({
 
 
   /* Meta */
-  status: { type: String, enum: ['pending', 'approved'] },
+  status: { type: String, enum: ['pending', 'approved'], default: 'pending' },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
-  payment_history: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
+  payment_history: [Payment],
   notes: [Note]
 }, {
   timestamps: true

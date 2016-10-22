@@ -313,6 +313,20 @@ class ClientManager extends Component {
             </div>
 
             <div className={css(type.subHeading, styles.heading)}>Status</div>
+            <div style={{color: colors.light, marginTop: -16, marginBottom: 16, fontSize: 12}}>
+              Current Status: {client.status}
+            </div>
+            <LabelWrapper label="Actions:">
+              <div>
+                {client.status === 'pending' &&
+                <div
+                  className={css(styles.action)}
+                  onClick={() => this.updateClient({status: 'approved'})}>
+                  Approve {client.name}
+                </div>
+                }
+              </div>
+            </LabelWrapper>
             <InputLabel
               label="Add a note:"
               value={this.state.tempNote}
@@ -378,6 +392,12 @@ const styles = StyleSheet.create({
 
   section: {
     marginBottom: 40
+  },
+
+  action: {
+    color: colors.secondary,
+    textDecoration: 'underline',
+    cursor: 'pointer'
   },
 
   inlineSelect: {

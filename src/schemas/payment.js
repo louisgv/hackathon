@@ -8,6 +8,4 @@ const paymentSchema = new Schema({
     timestamps: true
 });
 
-const Payment = Mongoose.model('Payment', paymentSchema);
-
-export default Payment;
+export default paymentSchema;
