@@ -3,7 +3,7 @@ import passport from 'passport';
 import aws from 'aws-sdk';
 
 import User from '../schemas/user';
-
+import Invite from '../schemas/invite';
 
 const router = express.Router();
 
@@ -47,7 +47,11 @@ router.get('/', allRoutes);
 router.get('/login', mustBeLoggedOut, allRoutes);
 router.get('/signup', mustBeLoggedOut, allRoutes);
 router.get('/admin*', mustBeLoggedIn, mustBeAdmin, allRoutes);
-router.get('/invite*', mustBeLoggedOut, allRoutes);
+router.get('/invite', mustBeLoggedOut, allRoutes);
+router.get('/invite/:id', mustBeLoggedOut, (req, res, next) => {
+  next();
+  Invite.findByIdAndUpdate(req.params.id, {viewed_on: Date.now()}).exec();
+}, allRoutes);
 
 function authenticate(req, res, next) {
   passport.authenticate('local', function (err, user) {
