@@ -1,11 +1,17 @@
 import React from 'react';
-import {StyleSheet, css} from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite';
 
-export default () => (
-  <div>
+import colors from '../../styles/colors';
+
+export default ({ path }) => (
+  <div className={css(styles.main)}>
     <div className={css(styles.container)}>
       <div className={css(styles.nav)}>
-        <a href="/admin" className={css(styles.links)}>Clients</a>
+        <a
+          href="/admin"
+          className={css(styles.links, (/(\/admin\/client).*/g.test(path) || path === '/admin') && styles.linksSelected)}>
+          Clients
+        </a>
         <a className={css(styles.links)}>Data</a>
         <a className={css(styles.links)}>Account</a>
       </div>
@@ -13,20 +19,39 @@ export default () => (
   </div>
 );
 
+
 const styles = StyleSheet.create({
+  main: {
+    background: 'white',
+    borderBottom: `1px solid ${colors.border}`,
+    height: 40,
+    paddingLeft: 40,
+    paddingRight: 40
+  },
   container: {
-    background: '#F1F1F1',
-    padding: '10px 0'
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+    maxWidth: 1000,
+    margin: 'auto'
   },
   nav: {
-    width: '80%',
-    margin: '0 auto'
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: -16,
+    marginLeft: -16
   },
   links: {
-    marginRight: '50px',
+    paddingLeft: 16,
+    paddingRight: 16,
     textDecoration: 'none',
     cursor: 'pointer',
-    fontSize: '18px',
-    color: '#0E0E0E'
+    fontSize: 10,
+    textTransform: 'uppercase',
+    color: colors.light,
+    fontWeight: 600
+  },
+  linksSelected: {
+    color: colors.primary
   }
 });

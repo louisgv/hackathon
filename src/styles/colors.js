@@ -1,12 +1,12 @@
 export default {
-  background: '#fbfbfb',
-  dark: '#3C3C3C',
-  light: '#999999',
+  background: '#F6F8FD',
+  dark: '#3A3C4A',
+  light: '#696C7B',
   primary: '#EA8037',
   primaryLight: '#F8B85F',
-  secondary: '#5D5D97',
+  secondary: '#00B8FF',
   divider: '#E9E9E9',
-  border: '#D2D2D2',
+  border: '#DBE1ED',
   highlight: '#277CFF',
   positive: '#2CE429'
 };

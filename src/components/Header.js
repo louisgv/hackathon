@@ -31,7 +31,7 @@ class Header extends Component {
 const styles = StyleSheet.create({
   header: {
     position: 'relative',
-    height: 56,
+    height: 72,
     paddingLeft: 16,
     paddingRight: 16,
     boxSizing: 'border-box',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     zIndex: 1,
-    borderBottom: `1px solid ${colors.divider}`
+    borderBottom: `1px solid ${colors.border}`
   },
   brand: {
     display: 'flex',

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, css} from 'aphrodite';
 
-import {brandon} from '../../styles/type';
 import layout from '../../styles/layout';
 import Header from '../../components/Header';
 
@@ -34,7 +33,7 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   main: {
-    fontFamily: [brandon, 'sans-serif'],
+    fontFamily: ['Open Sans', 'sans-serif'],
     fontSize: 13,
     lineHeight: '24px',
     color: '#3c3c3c',
