@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     boxSizing: 'border-box',
     width: '100%',
     ':focus': {
-      outline: 'none'
+      outline: 'none',
+      border: `1px solid #C2C9D7`
     }
   }
 });

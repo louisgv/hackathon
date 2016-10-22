@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 32,
-    marginTop: 32
+    marginTop: 40
   },
   heading: {
     marginBottom: 8

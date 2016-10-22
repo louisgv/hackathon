@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     textDecoration: 'none',
     cursor: 'pointer',
-    fontSize: 14,
-    color: colors.dark,
+    fontSize: 10,
+    textTransform: 'uppercase',
+    color: colors.light,
     fontWeight: 600
   },
   linksSelected: {
