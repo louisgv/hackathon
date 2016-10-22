@@ -11,6 +11,9 @@ const clientSchema = new Schema({
 
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   invite: {type: Schema.Types.ObjectId, ref: 'Invite'},
+  home: {type: String, enum: ['House', 'Apartment']},
+  rent: Number,
+  lease: String,
   paymentHistory: [{type: Schema.Types.ObjectId, ref: 'Payment'}],
   race: {type: String, enum: ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other'] },
   military: { type: String, enum: ['World War II', 'Korean War', 'Vietnam War', 'Desert Storm', 'Afghan', 'Iraq', 'Other'] },
