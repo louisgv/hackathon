@@ -31,7 +31,7 @@ class Header extends Component {
 const styles = StyleSheet.create({
   header: {
     position: 'relative',
-    height: 56,
+    height: 72,
     paddingLeft: 16,
     paddingRight: 16,
     boxSizing: 'border-box',

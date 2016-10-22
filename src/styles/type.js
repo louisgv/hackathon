@@ -17,6 +17,10 @@ export default StyleSheet.create({
     fontSize: 72,
     lineHeight: '96px'
   },
+  pageTitle: {
+    fontSize: 26,
+    fontWeight: 600
+  },
   title: {
     fontSize: 22,
     fontWeight: 600,

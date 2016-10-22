@@ -4,7 +4,7 @@ export default {
   light: '#999999',
   primary: '#EA8037',
   primaryLight: '#F8B85F',
-  secondary: '#5D5D97',
+  secondary: '#00B8FF',
   divider: '#E9E9E9',
   border: '#D2D2D2',
   highlight: '#277CFF',

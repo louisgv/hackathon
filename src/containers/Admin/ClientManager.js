@@ -25,7 +25,7 @@ class ClientManager extends Component {
     const { client } = this.props;
     return (
       <div>
-        <div className={css(type.title, styles.title)}>{client.name}</div>
+        <div className={css(type.pageTitle, styles.title)}>{client.name}</div>
         <div className={css(styles.wrapper)}>
           <div className={css(styles.left)}>
             <div className={css(styles.section)}>
@@ -122,14 +122,62 @@ class ClientManager extends Component {
               <div className={css(type.subHeading, styles.heading)}>Home Information</div>
               <LabelWrapper label="Home Type">
                 <div style={{display: 'flex'}}>
-                  <div className={css(styles.bigOption)} style={{marginRight: 8}}>
-                    <i className="fa fa-home" style={{marginRight: 8}} />
+                  <div
+                    className={css(styles.bigOption, client.home_type === 'House' && styles.bigOptionSelected)}
+                    style={{marginRight: 8}}
+                    onClick={() => this.updateClient({home_type: 'House'})}>
+                    <i className="fa fa-home" style={{marginRight: 4}}/>
                     <div>House</div>
                   </div>
-                  <div className={css(styles.bigOption)} style={{marginLeft: 8}}>
-                    <i className="fa fa-building" style={{marginRight: 8}} />
+                  <div
+                    className={css(styles.bigOption, client.home_type === 'Apartment' && styles.bigOptionSelected)}
+                    style={{marginLeft: 8}}
+                    onClick={() => this.updateClient({home_type: 'Apartment'})}>
+                    <i className="fa fa-building" style={{marginRight: 4}}/>
                     <div>Apartment</div>
                   </div>
+                </div>
+              </LabelWrapper>
+              <div style={{display: 'flex', alignItems: 'center'}}>
+                {client.home_type === 'Apartment' &&
+                <div style={{marginRight: 8, flex: 1}}>
+                  <InputLabel
+                    label="Lease Start Date"
+                    value={client.lease_start_date}
+                    handleChange={lease_start_date => this.updateClient({lease_start_date})}
+                  />
+                </div>
+                }
+                {client.home_type === 'Apartment' &&
+                <div style={{marginRight: 8, flex: 1}}>
+                  <InputLabel
+                    label="Lease End Date"
+                    value={client.lease_end_date}
+                    handleChange={lease_end_date => this.updateClient({lease_end_date})}
+                  />
+                </div>
+                }
+                <div style={{flex: 1, maxWidth: 180}}>
+                  <InputLabel
+                    label={`${client.home_type === 'House' ? 'Mortgage' : 'Rent'} Amount`}
+                    value={client.monthly_home_payment}
+                    handleChange={monthly_home_payment => this.updateClient({monthly_home_payment})}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className={css(styles.section)}>
+              <div className={css(type.subHeading, styles.heading)}>Veteran Status</div>
+              <LabelWrapper label="Is the client a veteran">
+                <div style={{display: 'flex', alignItems: 'center'}} onClick={() => this.updateClient({veteran: true})}>
+                  <input type="radio" name="isClientVeteran" checked={client.veteran}/>
+                  <div style={{marginLeft: 4}}>Yes</div>
+                </div>
+
+                <div style={{display: 'flex'}} onClick={() => this.updateClient({veteran: false})}>
+                  <input type="radio" name="isClientVeteran" checked={!client.veteran}/>
+                  <div style={{marginLeft: 4}}>No</div>
                 </div>
               </LabelWrapper>
             </div>
@@ -162,7 +210,8 @@ class ClientManager extends Component {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    marginBottom: 32
+    marginBottom: 32,
+    marginTop: 32
   },
   heading: {
     marginBottom: 8
@@ -200,7 +249,7 @@ const styles = StyleSheet.create({
     }
   },
   bigOption: {
-    height: 48,
+    height: 40,
     border: `1px solid ${colors.border}`,
     borderRadius: 1,
     display: 'flex',
@@ -208,7 +257,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     fontSize: 15,
-    color: colors.light
+    color: colors.light,
+    cursor: 'pointer'
+  },
+  bigOptionSelected: {
+    border: `1px solid ${colors.secondary}`,
+    color: colors.secondary
   }
 });
 

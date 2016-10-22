@@ -23,9 +23,10 @@ const clientSchema = new Schema({
   ],
 
   /* House Info */
-  home: { type: String, enum: ['House', 'Apartment'], default: 'House' },
-  rent: Number,
-  lease: String,
+  home_type: { type: String, enum: ['House', 'Apartment'], default: 'House' },
+  monthly_home_payment: Number,
+  lease_start_date: String,
+  lease_end_date: String,
 
   /* Veteran Status */
   veteran: Boolean,
