@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   foldItem: {
     padding: 56,
     borderBottom: '1px solid gray'
-
   },
   foldItemHeader: {
     fontSize: 40,

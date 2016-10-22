@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import { css } from 'aphrodite';
+
+import form from '../../styles/form';
+import buttons from '../../styles/buttons';
 
 class Invite extends Component {
   constructor(props) {
@@ -23,40 +27,46 @@ class Invite extends Component {
     }
     return (
       <div>
-        <div>Invite a tenant</div>
+        <div style={{textAlign: 'center', fontSize: 40, lineHeight: '72px', margin: '50px 0'}}>Invite a tenant</div>
         {s.error && <div style={{color: 'red'}}>{s.error}</div>}
-        <form onSubmit={this.handleSubmit}>
+        <form className={css(form.main)} onSubmit={this.handleSubmit}>
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Landlord Name"
             value={s.landlordName}
             onChange={e => this.setState({landlordName: e.target.value})}
           />
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Landlord Email"
             value={s.landlordEmail}
             onChange={e => this.setState({landlordEmail: e.target.value})}
           />
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Landlord Phone"
             value={s.landlordPhone}
             onChange={e => this.setState({landlordPhone: e.target.value})}
           />
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Client Name"
             value={s.clientName}
             onChange={e => this.setState({clientName: e.target.value})}
           />
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Client Email"
             value={s.clientEmail}
             onChange={e => this.setState({clientEmail: e.target.value})}
           />
           <input
+            className={css(form.input, form.inputLarge)}
             placeholder="Client Phone"
             value={s.clientPhone}
             onChange={e => this.setState({clientPhone: e.target.value})}
           />
-          <input type="submit" value="invite"/>
+          <input type="submit" className={css(buttons.large)} value="invite"/>
         </form>
       </div>
     );

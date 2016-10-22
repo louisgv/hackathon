@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import {StyleSheet, css} from 'aphrodite';
+
+import buttons from '../../styles/buttons';
+import type from '../../styles/type';
+
 
 class InviteInfo extends Component {
   constructor(props) {
@@ -23,11 +28,10 @@ class InviteInfo extends Component {
       return <div>Thanks, we will be in touch soon!</div>;
     }
     return (
-      <div>
-        <div>Client would be able to "accept" invite here</div>
-        <div>Hello {invite.client_name}!</div>
-        <div>Welcome to The Situation.</div>
-        <div onClick={this.acceptInvitation}>ACCEPT</div>
+      <div className={css(styles.main)}>
+        <div style={{textAlign: 'center', fontSize: 40, lineHeight: '72px'}}>Hello {invite.client_name}!</div>
+        <div className={css(type.heading)} style={{textAlign: 'center', marginBottom: '50px'}}>Welcome to The Situation.</div>
+        <div className={css(buttons.large)} onClick={this.acceptInvitation}>ACCEPT INVITE</div>
       </div>
     );
   }
@@ -37,5 +41,14 @@ class InviteInfo extends Component {
     fetch(`/api/invite/${this.inviteId}/accept`, { method: 'put' });
   }
 }
+
+const styles = StyleSheet.create({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 400,
+    margin: '100px auto'
+  }
+});
 
 export default InviteInfo;
