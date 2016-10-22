@@ -36,6 +36,7 @@
     "new-parens": 0,
     "no-use-before-define": 0,
     "camelcase": 0,
+    "no-return-assign": 0,
     // React
     "react/display-name": 0,
     "react/jsx-no-undef": 1,

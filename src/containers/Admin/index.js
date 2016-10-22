@@ -4,7 +4,7 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        Admin
+        <div>Admin Console</div>
         {this.props.children}
       </div>
     );

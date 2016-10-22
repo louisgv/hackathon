@@ -1,6 +1,8 @@
 import Admin from './Admin';
 import App from './App';
+import ClientList from './Admin/ClientList';
 import ClientManager from './Admin/ClientManager';
+import Dashboard from './Dashboard';
 import Invite from './Invite';
 import InviteInfo from './IniviteInfo';
 import Landing from './Landing';
@@ -10,24 +12,32 @@ import Signup from './Signup';
 const all = [];
 
 export default function ({ getState }) {
-  const user = getState().app.currentUser;
+  const user = getState().users[getState().app.currentUser];
   return {
     path: '/',
     component: App,
     indexRoute: { component: Landing },
     getChildRoutes(_, cb) {
       if (user) {
+        console.log(user);
         if (user.role === 'admin') {
           return cb(null, [
             ...all,
             {
               path: 'admin',
               component: Admin,
+              indexRoute: { component: ClientList },
               childRoutes: [
-                { path: 'client/:client_id', component: ClientManager }
+                { path: 'client/:id', component: ClientManager }
               ]
             }
           ]);
+        }
+        if (user.role === 'client') {
+          return cb(null, [
+            ...all,
+            { path: 'dashboard', component: Dashboard }
+          ])
         }
       }
       /* logged out routes */

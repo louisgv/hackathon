@@ -1,12 +1,12 @@
 import Mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
-const {Schema} = Mongoose;
+const { Schema } = Mongoose;
 
 const userSchema = new Schema({
   email: String,
-  password: {type: String},
-  role: { type: String, enum: ['admin', 'client'] }
+  password: { type: String },
+  role: { type: String, enum: ['admin', 'client'], default: 'client' }
 }, {
   timestamps: true
 });

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import {css} from 'aphrodite';
-import {Link} from 'react-router';
+import { css } from 'aphrodite';
+import { Link } from 'react-router';
 
 import form from '../../styles/form';
 import buttons from '../../styles/buttons';
@@ -24,7 +24,7 @@ class Login extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.setState({error: '', loading: true});
+    this.setState({ error: '', loading: true });
     const user = {
       email: this.state.email,
       password: this.state.password
@@ -37,7 +37,7 @@ class Login extends Component {
       newError += 'Please provide your password<br/>';
     }
     if (newError) {
-      return this.setState({loading: false, error: newError});
+      return this.setState({ loading: false, error: newError });
     }
     fetch(`/login`, {
       method: 'post',
@@ -61,9 +61,15 @@ class Login extends Component {
             loading: false
           });
         }
+        if (user.role === 'admin') {
+          return window.location.href = '/admin';
+        }
+        if (user.role === 'client') {
+          return window.location.href = '/dashboard';
+        }
         window.location.href = '/';
       })
-      .catch(error => this.setState({error, loading: false}));
+      .catch(error => this.setState({ error, loading: false }));
   }
 
   render() {

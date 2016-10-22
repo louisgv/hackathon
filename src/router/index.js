@@ -47,6 +47,7 @@ router.get('/', allRoutes);
 router.get('/login', mustBeLoggedOut, allRoutes);
 router.get('/signup', mustBeLoggedOut, allRoutes);
 router.get('/admin*', mustBeLoggedIn, mustBeAdmin, allRoutes);
+router.get('/dashboard', mustBeLoggedIn, allRoutes);
 router.get('/invite', mustBeLoggedOut, allRoutes);
 router.get('/invite/:id', mustBeLoggedOut, (req, res, next) => {
   next();
