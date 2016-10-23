@@ -11,15 +11,42 @@ class Dashboard extends Component {
     this.props.dispatch(fetchClients());
   }
 
+  getStarObjects(star_count) {
+    let starsArray = [];
+    for (var i = 0; i < star_count; i++) {
+      starsArray.push({});
+    }
+    console.log('fp', star_count, starsArray)
+    return starsArray;
+  }
+
   render() {
     const { client } = this.props;
+    const star_count = 13;
+    const levels = [];
+    for (var i = 0; i < Math.floor(star_count / 3); i++) {
+      levels.push({star_count: 3});
+    }
+    if (star_count % 3) {
+      levels.push({star_count: star_count % 3});
+    }
+
     return (
       <div style={{margin: '30px 50px'}}>
         <div style={{textAlign: 'center', fontSize: 30, lineHeight: '72px'}}>Welcome <span style={{color: colors.primary}}> {client.name}</span></div>
-        <div style={{display: 'flex'}}>
-          <ClientInfo client={ client ? client : '' }/>
-          <PaymentHistory client={client}/>
+        <div>
+          {levels.map((level, i) => (
+          <div key={i}>
+            <div>{20 - i}</div>
+            {this.getStarObjects(level.star_count).map(star => (
+            <div style={{display: 'inline'}}>*</div>
+            ))}
+          </div>
+          ))}
         </div>
+        <PaymentHistory
+          monthly_home_payment={client.monthly_home_payment}
+          payment_history={client.payment_history}/>
       </div>
     );
   }
