@@ -5,7 +5,6 @@ import Header from './Header';
 
 class Admin extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Header path={this.props.location.pathname} />

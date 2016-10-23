@@ -36,6 +36,7 @@ class ClientManager extends Component {
 
   render() {
     const { client } = this.props;
+    console.log(client.notes);
     return (
       <div className={css(styles.main)}>
         <div className={css(type.pageTitle, styles.title)}>{client.name}</div>
@@ -306,7 +307,7 @@ class ClientManager extends Component {
           <div className={css(styles.right)}>
             <div className={css(type.subHeading, styles.heading)}>Notes</div>
             <div style={{paddingLeft: 24}}>
-              {client.notes && client.notes.map(note => (
+              {client.notes && client.notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(note => (
                 <Note key={note._id} type={note.note} date={note.createdAt}/>
               ))}
               <Note client={client} type="creation" date={client.createdAt}/>
@@ -325,6 +326,16 @@ class ClientManager extends Component {
                   Approve {client.name}
                 </div>
                 }
+                <div
+                  className={css(styles.action)}
+                  onClick={() => this.addNote('call-no-answer')}>
+                  Called - Client Did Not Answer
+                </div>
+                <div
+                  className={css(styles.action)}
+                  onClick={() => this.addNote('call-answer')}>
+                  Called - Client Answered
+                </div>
               </div>
             </LabelWrapper>
             <InputLabel
@@ -332,7 +343,7 @@ class ClientManager extends Component {
               value={this.state.tempNote}
               handleChange={tempNote => this.setState({tempNote})}
               handleEnter={() => {
-                if (['creation'].indexOf(this.state.tempNote) >= 0) {
+                if (['creation', 'call-no-answer', 'call-answer'].indexOf(this.state.tempNote) >= 0) {
                   return;
                 }
                 this.setState({tempNote: ''});
