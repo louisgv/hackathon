@@ -17,7 +17,6 @@ import routes from './router';
 import api from './router/api';
 import User from './schemas/user';
 
-
 const MongoStore = connectMongo(session);
 const app = express();
 

@@ -1,1 +1,1 @@
-export default ['Native American', 'Asian', 'Black', 'Caucasian', 'Hispanic', 'Other'];
+export default ['Native American', 'Asian', 'Black', 'White', 'Hispanic', 'Other'];
