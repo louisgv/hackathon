@@ -14,34 +14,28 @@ class ClientList extends Component {
     const { clients } = this.props;
     return (
       <div className={css(styles.container)}>
-        <div className={css(styles.header)} >Clients:</div>
-        <table className={css(styles.table)}>
-          <tr>
-            <th className={css(styles.tableHeader, styles.tableColumn)}>Client Name</th>
-            <th className={css(styles.tableHeader, styles.tableColumn)}>Status</th>
-            <th className={css(styles.tableHeader, styles.tableColumn)}>Amount Owed</th>
-          </tr>
+        <div className={css(styles.table)}>
+          <div className={css(styles.tableHeaderSection)}>
+            <div className={css(styles.tableHeader)} style={{order: 1}}>Client Name</div>
+            <div className={css(styles.tableHeader)} style={{order: 2}}>Status</div>
+            <div className={css(styles.tableHeader)} style={{order: 3}}>Amount Owed</div>
+          </div>
+          <div className={css(styles.tableRowSection)}>
           {clients.map(client => (
-            <tr>
-              <td className={css(styles.tableRowHeader, styles.tableColumn)}>
-                <Link to={`/admin/client/${client._id}`} key={client._id} className={css(styles.link)}>{client.name}</Link>
-              </td>
-              <td className={css(styles.tableRowHeader, styles.tableColumn)}>
-                <span>Pending</span>
-              </td>
-              <td className={css(styles.tableRowHeader, styles.tableColumn)}>
-                $100
-              </td>
-            </tr>
+            <div className={css(styles.tableRow)}>
+              <div className={css(styles.tableRowItem)} style={{order: 1}}>{client.name}</div>
+              <div className={css(styles.tableRowItem)} style={{order: 2}}>Pending</div>
+              <div className={css(styles.tableRowItem)} style={{order: 3}}>$100</div>
+            </div>
           ))}
-        </table>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 function select(state) {
-  console.log(state);
   return {
     clients: Object.keys(state.clients).map(id => state.clients[id])
   };
@@ -57,17 +51,44 @@ const styles = StyleSheet.create({
     fontSize: '22px'
   },
   table: {
-    marginTop: '25px'
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    width: '50%',
+    margin: '5% auto'
   },
-  tableColumn: {
-    paddingRight: '50px',
-    textAlign: 'center'
+  tableHeaderSection: {
+    display: 'flex',
+    flex: '1 100%',
+    padding: '10px 0',
+    border: '1px solid #ccc',
+    background: '#EA8037',
+    color: '#FFF',
+    fontWeight: '600'
   },
-  tableHeader: {
+  tableRowSection: {
+    display: 'flex',
+    width: '100%',
+    'flex-direction': 'column',
+    borderRight: '1px solid #ccc',
+    borderLeft: '1px solid #ccc'
+  },
+  tableRow: {
+    display: 'flex',
+    width: '100%',
+    borderBottom: '1px solid #ccc',
+    padding: '10px 0'
+  },
+  tableRowItem: {
+    flex: '1 auto',
+    textAlign: 'center',
+    width: '33%',
     fontSize: '16px'
   },
-  tableRowHeader: {
-    fontSize: '14px'
+  tableHeader: {
+    fontSize: '16px',
+    flex: '1 auto',
+    textAlign: 'center',
+    width: '33%'
   },
   link: {
     color: '#000',
