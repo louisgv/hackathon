@@ -10,10 +10,8 @@ export default ({ path }) => (
         <a
           href="/admin"
           className={css(styles.links, (/(\/admin\/client).*/g.test(path) || path === '/admin') && styles.linksSelected)}>
-          Clients
+          Tenants
         </a>
-        <a className={css(styles.links)}>Data</a>
-        <a className={css(styles.links)}>Account</a>
       </div>
     </div>
   </div>
@@ -22,7 +20,6 @@ export default ({ path }) => (
 
 const styles = StyleSheet.create({
   main: {
-    background: colors.background,
     borderBottom: `1px solid ${colors.border}`,
     height: 40,
     paddingLeft: 40,
@@ -42,16 +39,18 @@ const styles = StyleSheet.create({
     marginLeft: -16
   },
   links: {
-    paddingLeft: 16,
     paddingRight: 16,
     textDecoration: 'none',
     cursor: 'pointer',
-    fontSize: 10,
-    textTransform: 'uppercase',
-    color: colors.light,
-    fontWeight: 600
+    fontSize: 14,
+    color: colors.dark,
+    fontWeight: 600,
+    transition: 'all 0.35s',
+    ':hover': {
+      color: colors.primary
+    }
   },
   linksSelected: {
-    color: colors.primary
+    color: colors.dark
   }
 });
