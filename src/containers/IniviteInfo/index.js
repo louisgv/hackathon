@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import {StyleSheet, css} from 'aphrodite';
 
 import buttons from '../../styles/buttons';
+import form from '../../styles/form';
 import type from '../../styles/type';
 
 
@@ -25,9 +26,7 @@ class InviteInfo extends Component {
 
   render() {
     const { invite, accepted } = this.state;
-    if (accepted) {
-      return <div>Thanks, we will be in touch soon!</div>;
-    }
+
     return (
       <div className={css(styles.main)}>
         <div style={{width: '1100px', margin: '0 auto', border: '1px solid #CCC', padding: 25, boxShadow:'1px 1px 10px #CCC', borderRadius: 10}}>
@@ -52,7 +51,12 @@ class InviteInfo extends Component {
             <div>Once this invitation has been accepted, you will be contacted by a CoC professional to complete the sign up process. </div>
           </div>
           <div style={{width: '100%', textAlign: 'center', clear: 'both'}}>
-            <div className={css(buttons.large)} onClick={this.acceptInvitation}>ACCEPT INVITE</div>
+            {
+              !accepted && <div className={css(buttons.large)} onClick={this.acceptInvitation}>ACCEPT INVITE</div>
+            }
+            {
+              accepted && <div className={css(form.successAlert)}>Thanks, we'll be in touch soon!</div>
+            }
           </div>
         </div>
       </div>
