@@ -24,7 +24,8 @@ class Invite extends Component {
     const s = this.state;
     return (
       <div>
-        <div style={{textAlign: 'center', fontSize: 40, lineHeight: '72px', margin: '50px 0'}}>Invite a tenant</div>
+        <div style={{textAlign: 'center', fontSize: 40, lineHeight: '72px', margin: '50px 0 16px'}}>Invite a tenant</div>
+        <div style={{width: 400, margin: '0 auto 50px', color: '#555', textAlign: 'center'}}>We'll send a notification explaining your wish to allow Ounce of Prevention to help resolve payment issues.</div>
         {s.inviteSent &&
         <div className={css(form.successAlert)}>
           <div style={{fontWeight: 'bold'}}>Invitation sent!</div>
