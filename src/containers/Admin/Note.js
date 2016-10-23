@@ -6,8 +6,14 @@ const icons = {
 };
 
 function getMessage(type, client) {
-  if(type === 'creation') {
+  if (type === 'creation') {
     return <div>{client.name} Added</div>;
+  }
+  if (type === 'call-no-answer') {
+    return <div>Call - No Answer</div>;
+  }
+  if (type === 'call-answer') {
+    return <div>Call</div>;
   }
   return <div style={{fontSize: 12}}>"{type}"</div>;
 }
