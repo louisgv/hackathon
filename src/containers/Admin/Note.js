@@ -4,7 +4,9 @@ import moment from 'moment';
 const icons = {
   creation: 'user-plus',
   'call-no-answer': 'phone',
-  'call-answer': 'phone'
+  'call-answer': 'phone',
+  'approve': 'check-circle-o',
+  'decline': 'times-circle-o'
 };
 
 function getMessage(type, client) {
@@ -16,6 +18,12 @@ function getMessage(type, client) {
   }
   if (type === 'call-answer') {
     return <div>Call</div>;
+  }
+  if (type === 'approve') {
+    return <div>Approved Application</div>;
+  }
+  if (type === 'decline') {
+    return <div>Declined Application</div>;
   }
   return <div style={{fontSize: 12}}>"{type}"</div>;
 }

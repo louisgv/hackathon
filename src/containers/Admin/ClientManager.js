@@ -126,7 +126,6 @@ class ClientManager extends Component {
                       borderRight: '1px solid #ececec',
                       borderBottom: '1px solid #ececec'
                     }}>
-                      <div className={css(type.label)}>Add Disability</div>
                       <div style={{display: 'flex', alignItems: 'center'}}>
                         <select
                           style={{flex: 1, marginRight: 8}}
@@ -329,14 +328,20 @@ class ClientManager extends Component {
                 {client.status === 'pending' &&
                 <div
                   className={css(styles.action)}
-                  onClick={() => this.updateClient({status: 'declined'})}>
+                  onClick={() => {
+                    this.addNote('approve');
+                    this.updateClient({status: 'declined'})
+                  }}>
                   Decline {client.name}
                 </div>
                 }
                 {client.status === 'pending' &&
                 <div
                   className={css(styles.action)}
-                  onClick={() => this.updateClient({status: 'approved'})}>
+                  onClick={() => {
+                    this.addNote('decline');
+                    this.updateClient({status: 'approved'});
+                  }}>
                   Approve {client.name}
                 </div>
                 }
@@ -354,7 +359,7 @@ class ClientManager extends Component {
               value={this.state.tempNote}
               handleChange={tempNote => this.setState({tempNote})}
               handleEnter={() => {
-                if (['creation', 'call-no-answer', 'call-answer'].indexOf(this.state.tempNote) >= 0) {
+                if (['creation', 'call-no-answer', 'call-answer', 'approve', 'decline'].indexOf(this.state.tempNote) >= 0) {
                   return;
                 }
                 this.setState({tempNote: ''});
