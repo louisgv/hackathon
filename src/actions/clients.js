@@ -88,11 +88,11 @@ export function addPayment(id, amount) {
       body: amount
     })
       .then(res => res.json())
-      .then(amount => {
+      .then(payment_history => {
         dispatch({
           type: CLIENT_UPDATED,
           id,
-          update: {amount}
+          update: {payment_history}
         });
       });
   };
