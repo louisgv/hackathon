@@ -24,7 +24,7 @@ class ClientList extends Component {
           <div className={css(styles.tableRowSection)}>
           {clients.slice(0, 20).map(client => (
             <div className={css(styles.tableRow)} onClick={client => this.handleRedirect(client._id) }>
-              <Link to={'/admin/client/${client._id}'} key={client._id} className={css(styles.link)}>
+              <Link to={`/admin/client/${client._id}`} key={client._id} className={css(styles.link)}>
                 <div className={css(styles.tableRowItem)} style={{order: 1}}>{client.name}</div>
                 <div className={css(styles.tableRowItem)} style={{order: 2}}>{this.getStatus(client)}</div>
                 <div className={css(styles.tableRowItem)} style={{order: 3}}>$100</div>
@@ -32,7 +32,7 @@ class ClientList extends Component {
             </div>
           ))}
           <div className={css(styles.pagination)}>
-            <span style={{cursor: 'pointer'}} onClick={this.props.dispatch({type})}>Prev</span>
+            <span style={{cursor: 'pointer'}}>Prev</span>
             <span style={{float: 'right', cursor: 'pointer'}}>Next</span>
           </div>
           </div>
