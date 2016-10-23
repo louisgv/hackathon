@@ -16,7 +16,10 @@ function admin(req, res, next) {
 }
 
 function client(req, res, next) {
-  let client = Client.find((req.user && req.user.role === 'client') ? { user: req.user._id } : {}, (_, clients) => {
+  if( !req.user || req.user.role !== 'client'){
+    return res.sendStatus(500);
+  }
+  let client = Client.find(({ user: req.user._id }), (_, clients) => {
     return clients[Object.keys(clients)[0]];
   });
   if (req.id !== client._id){

@@ -79,14 +79,14 @@ export function addNote(id, note) {
 
 export function addPayment(id, amount) {
   return dispatch => {
-    fetch(`/api/client/${id}/amount`, {
+    fetch(`/api/client/${id}/payment`, {
       method: 'post',
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: amount
+      body: JSON.stringify({amount})
     })
       .then(res => res.json())
       .then(payment_history => {

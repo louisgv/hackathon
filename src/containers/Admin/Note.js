@@ -2,7 +2,9 @@ import React from 'react';
 import moment from 'moment';
 
 const icons = {
-  creation: 'user-plus'
+  creation: 'user-plus',
+  'call-no-answer': 'phone',
+  'call-answer': 'phone'
 };
 
 function getMessage(type, client) {
@@ -21,8 +23,8 @@ function getMessage(type, client) {
 export default ({ type, date, client }) => (
   <div style={{display: 'flex', alignItems: 'center', marginBottom: 24}}>
     <i
-      className={`fa fa-${icons[type] ? icons[type] : 'sticky-note'}`}
-      style={{fontSize: 22, color: '#BAC2D0', marginRight: 16}}
+      className={`fa fa-${icons[type] ? icons[type] : 'sticky-note-o'}`}
+      style={{fontSize: 22, color: '#BAC2D0', marginRight: 8, width: 40, textAlign: 'center'}}
     />
     <div style={{fontSize: 16, color: '#696C7B'}}>
       {getMessage(type, client)}
