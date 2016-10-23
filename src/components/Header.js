@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     fontSize: 0,
-    height: 32,
+    height: 30,
     width: 80,
     marginBottom: -16
   },
