@@ -103,7 +103,9 @@ class ClientManager extends Component {
                           display: 'flex',
                           paddingLeft: 8,
                           paddingRight: 8,
-                          borderBottom: `1px solid ${colors.border}`
+                          borderBottom: `1px solid ${colors.border}`,
+                          borderLeft: `1px solid ${colors.border}`,
+                          borderRight: `1px solid ${colors.border}`
                         }}
                         key={i}>
                         <div style={{flex: 1}}>{disability.category}</div>
@@ -305,13 +307,6 @@ class ClientManager extends Component {
 
           </div>
           <div className={css(styles.right)}>
-            <div className={css(type.subHeading, styles.heading)}>Notes</div>
-            <div style={{paddingLeft: 24}}>
-              {client.notes && client.notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(note => (
-                <Note key={note._id} type={note.note} date={note.createdAt}/>
-              ))}
-              <Note client={client} type="creation" date={client.createdAt}/>
-            </div>
 
             <div className={css(type.subHeading, styles.heading)}>Status</div>
             <div style={{color: colors.light, marginTop: -16, marginBottom: 16, fontSize: 12}}>
@@ -338,6 +333,13 @@ class ClientManager extends Component {
                 </div>
               </div>
             </LabelWrapper>
+            <div className={css(type.subHeading, styles.heading)}>Notes</div>
+            <div style={{paddingLeft: 24}}>
+              {client.notes && client.notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(note => (
+                <Note key={note._id} type={note.note} date={note.createdAt}/>
+              ))}
+              <Note client={client} type="creation" date={client.createdAt}/>
+            </div>
             <InputLabel
               label="Add a note:"
               value={this.state.tempNote}
