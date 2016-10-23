@@ -134,9 +134,9 @@ router.put('/client/:id', admin, (req, res) => {
         }
         mail(
           client.email,
-          'You have been accepted',
-          `'you have been accepted! To track your shit go to localhost:5001/login. Youre temp
-         password is ${tempPassword}`
+          'Welcome to OOP!',
+          `Congratulations! You have been accepted into the OOP program. To finish registration please go to  localhost:5001/login. You're temp
+           password is ${tempPassword}`
         );
       });
     }
