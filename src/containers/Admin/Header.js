@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
   links: {
     paddingRight: 16,
+    paddingLeft: 16,
     textDecoration: 'none',
     cursor: 'pointer',
     fontSize: 14,

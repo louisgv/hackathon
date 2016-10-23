@@ -315,13 +315,6 @@ class ClientManager extends Component {
             </div>
             <LabelWrapper label="Actions:">
               <div style={{marginTop: -10}}>
-                {client.status === 'pending' &&
-                <div
-                  className={css(styles.action)}
-                  onClick={() => this.updateClient({status: 'approved'})}>
-                  Approve {client.name}
-                </div>
-                }
                 <div
                   className={css(styles.action)}
                   onClick={() => this.addNote('call-no-answer')}>
@@ -332,6 +325,21 @@ class ClientManager extends Component {
                   onClick={() => this.addNote('call-answer')}>
                   Called - Client Answered
                 </div>
+
+                {client.status === 'pending' &&
+                <div
+                  className={css(styles.action)}
+                  onClick={() => this.updateClient({status: 'declined'})}>
+                  Decline {client.name}
+                </div>
+                }
+                {client.status === 'pending' &&
+                <div
+                  className={css(styles.action)}
+                  onClick={() => this.updateClient({status: 'approved'})}>
+                  Approve {client.name}
+                </div>
+                }
               </div>
             </LabelWrapper>
             <div className={css(type.subHeading, styles.heading)}>Notes</div>

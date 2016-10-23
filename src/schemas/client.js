@@ -42,7 +42,7 @@ const clientSchema = new Schema({
 
 
   /* Meta */
-  status: { type: String, enum: ['pending', 'approved'], default: 'pending' },
+  status: { type: String, enum: ['pending', 'approved', 'declined'], default: 'pending' },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
   payment_history: [Payment],
