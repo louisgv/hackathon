@@ -37,7 +37,14 @@ export default StyleSheet.create({
     borderRadius: 2,
     border: '1px solid #fa5252'
   },
-
+  successAlert: {
+    maxWidth: 400,
+    margin: '0 auto 16px',
+    padding: 16,
+    boxSizing: 'border-box',
+    color: '#208e44',
+    background: '#c8fbc7'
+  },
   inline: {
     display: 'flex',
     flexDirection: 'column',

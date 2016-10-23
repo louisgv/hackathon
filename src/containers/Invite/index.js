@@ -22,12 +22,15 @@ class Invite extends Component {
 
   render() {
     const s = this.state;
-    if (s.inviteSent) {
-      return <div>Invite Sent!!</div>;
-    }
     return (
       <div>
         <div style={{textAlign: 'center', fontSize: 40, lineHeight: '72px', margin: '50px 0'}}>Invite a tenant</div>
+        {s.inviteSent &&
+        <div className={css(form.successAlert)}>
+          <div style={{fontWeight: 'bold'}}>Invitation sent!</div>
+          <div>We'll notify you when your tenant accepts.</div>
+        </div>
+        }
         {s.error && <div style={{color: 'red'}}>{s.error}</div>}
         <form className={css(form.main)} onSubmit={this.handleSubmit}>
           <input
