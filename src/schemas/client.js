@@ -46,6 +46,8 @@ const clientSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   invite: { type: Schema.Types.ObjectId, ref: 'Invite' },
   payment_history: [Payment],
+  payment_stars: { type: Number, default: 0 },
+  payment_streak: { type: Number, default: 0 },
   notes: [Note]
 }, {
   timestamps: true
