@@ -264,6 +264,22 @@ class ClientManager extends Component {
               <div className={css(type.subHeading, styles.heading)}>Financial Information</div>
               <div style={{display: 'flex'}}>
                 <div style={{flex: 1}}>
+                  <div style={{marginBottom: 16}}>
+                    <InputLabel
+                      label="Earned Income"
+                      value={client.earned_income}
+                      handleChange={earned_income => this.updateClient({earned_income})}
+                    />
+                  </div>
+                  <div style={{marginBottom: 16}}>
+                    <InputLabel
+                      label="Benefits Income"
+                      value={client.benefits_income}
+                      handleChange={benefits_income => this.updateClient({benefits_income})}
+                    />
+                  </div>
+                </div>
+                <div style={{flex: 1, paddingLeft: 32}}>
                   <LabelWrapper label="Is the client employed">
                     <div style={{display: 'flex', alignItems: 'center'}}>
                       <input
@@ -285,22 +301,6 @@ class ClientManager extends Component {
                       <div style={{marginLeft: 4}}>No</div>
                     </div>
                   </LabelWrapper>
-                </div>
-                <div style={{flex: 1}}>
-                  <div style={{marginBottom: 16}}>
-                    <InputLabel
-                      label="Earned Income"
-                      value={client.earned_income}
-                      handleChange={earned_income => this.updateClient({earned_income})}
-                    />
-                  </div>
-                  <div style={{marginBottom: 16}}>
-                    <InputLabel
-                      label="Benefits Income"
-                      value={client.benefits_income}
-                      handleChange={benefits_income => this.updateClient({benefits_income})}
-                    />
-                  </div>
                 </div>
               </div>
             </div>
@@ -334,7 +334,7 @@ class ClientManager extends Component {
               </div>
             </LabelWrapper>
             <div className={css(type.subHeading, styles.heading)}>Notes</div>
-            <div style={{paddingLeft: 24}}>
+            <div>
               {client.notes && client.notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(note => (
                 <Note key={note._id} type={note.note} date={note.createdAt}/>
               ))}
@@ -390,7 +390,8 @@ const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     maxWidth: 1000,
-    margin: 'auto'
+    margin: 'auto',
+    alignItems: 'flex-start'
   },
 
   left: {
@@ -400,7 +401,15 @@ const styles = StyleSheet.create({
   },
 
   right: {
-    width: 384
+    width: 320,
+    background: colors.background,
+    border: `1px solid ${colors.border}`,
+    borderRadius: 4,
+    paddingTop: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    boxSizing: 'border-box',
+    marginTop: -16
   },
 
   section: {
