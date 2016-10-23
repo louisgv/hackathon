@@ -64,24 +64,25 @@ class ClientManager extends Component {
                 options={races.map(race => ({label: race, value: race}))}
                 handleChange={race => this.updateClient({race})}
               />
-              <LabelWrapper label="Disabilities">
-                <div>
+              <div style={{marginTop: 32}}>
+                <LabelWrapper label="Disabilities">
                   <div>
-                    <div
-                      style={{
+                    <div>
+                      <div
+                        style={{
                         display: 'flex',
                         border: `1px solid ${colors.border}`,
                         background: colors.background,
                         paddingLeft: 8,
                         paddingRight: 8
                       }}>
-                      <div className={css(type.label)} style={{flex: 1}}>Type</div>
-                      <div className={css(type.label)} style={{flex: 1}}>Receiving Services</div>
-                      <div style={{width: 32}}/>
-                    </div>
-                    {(!client.disabilities || !client.disabilities.length) &&
-                    <div
-                      style={{
+                        <div className={css(type.label)} style={{flex: 1}}>Type</div>
+                        <div className={css(type.label)} style={{flex: 1}}>Receiving Services</div>
+                        <div style={{width: 32}}/>
+                      </div>
+                      {(!client.disabilities || !client.disabilities.length) &&
+                      <div
+                        style={{
                         background: colors.background,
                         borderLeft: `1px solid ${colors.border}`,
                         borderRight: `1px solid ${colors.border}`,
@@ -92,13 +93,13 @@ class ClientManager extends Component {
                         paddingBottom: 8,
                         opacity: 0.8
                       }}>
-                      No Disabilities
-                    </div>
-                    }
+                        No Disabilities
+                      </div>
+                      }
 
-                    {client.disabilities && client.disabilities.map((disability, i) => (
-                      <div
-                        style={{
+                      {client.disabilities && client.disabilities.map((disability, i) => (
+                        <div
+                          style={{
                           display: 'flex',
                           paddingLeft: 8,
                           paddingRight: 8,
@@ -106,55 +107,56 @@ class ClientManager extends Component {
                           borderLeft: `1px solid ${colors.border}`,
                           borderRight: `1px solid ${colors.border}`
                         }}
-                        key={i}>
-                        <div style={{flex: 1}}>{disability.category}</div>
-                        <div style={{flex: 1}}>
-                          {disability.is_receiving_services ? 'Yes' : 'No'}
+                          key={i}>
+                          <div style={{flex: 1}}>{disability.category}</div>
+                          <div style={{flex: 1}}>
+                            {disability.is_receiving_services ? 'Yes' : 'No'}
+                          </div>
+                          <div style={{width: 32, color: '#BAC2D0', textAlign: 'right'}}>
+                            <i onClick={() => this.removeDisability(i)} className="fa fa-trash"/>
+                          </div>
                         </div>
-                        <div style={{width: 32, color: '#BAC2D0', textAlign: 'right'}}>
-                          <i onClick={() => this.removeDisability(i)} className="fa fa-trash"/>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div
-                    style={{
+                      ))}
+                    </div>
+                    <div
+                      style={{
                       background: colors.background,
                       padding: 8,
                       borderLeft: '1px solid #ececec',
                       borderRight: '1px solid #ececec',
                       borderBottom: '1px solid #ececec'
                     }}>
-                    <div className={css(type.label)}>Add Disability</div>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
-                      <select
-                        style={{flex: 1, marginRight: 8}}
-                        className={css(styles.inlineSelect)}
-                        ref="newDisabilityCat">
-                        {disabilities.map((disability, i) => {
-                          if (!client.disabilities || !client.disabilities.find(d => d.category === disability)) {
-                            return (
-                              <option key={i} value={disability}>{disability}</option>
-                            );
-                          }
-                        })}
-                      </select>
-                      <select
-                        style={{flex: 1, marginRight: 8}}
-                        className={css(styles.inlineSelect)}
-                        ref="newDisabilityRec">
-                        <option value="true">Yes</option>
-                        <option value="">No</option>
-                      </select>
-                      <i
-                        style={{fontSize: 18, color: '#858E9D', cursor: 'pointer'}}
-                        onClick={() => this.addDisability()}
-                        className="fa fa-plus-square"
-                      />
+                      <div className={css(type.label)}>Add Disability</div>
+                      <div style={{display: 'flex', alignItems: 'center'}}>
+                        <select
+                          style={{flex: 1, marginRight: 8}}
+                          className={css(styles.inlineSelect)}
+                          ref="newDisabilityCat">
+                          {disabilities.map((disability, i) => {
+                            if (!client.disabilities || !client.disabilities.find(d => d.category === disability)) {
+                              return (
+                                <option key={i} value={disability}>{disability}</option>
+                              );
+                            }
+                          })}
+                        </select>
+                        <select
+                          style={{flex: 1, marginRight: 8}}
+                          className={css(styles.inlineSelect)}
+                          ref="newDisabilityRec">
+                          <option value="true">Yes</option>
+                          <option value="">No</option>
+                        </select>
+                        <i
+                          style={{fontSize: 18, color: '#858E9D', cursor: 'pointer'}}
+                          onClick={() => this.addDisability()}
+                          className="fa fa-plus-square"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </LabelWrapper>
+                </LabelWrapper>
+              </div>
             </div>
             <div className={css(styles.section)}>
               <div className={css(type.subHeading, styles.heading)}>Home Information</div>
@@ -412,7 +414,7 @@ const styles = StyleSheet.create({
   },
 
   section: {
-    marginBottom: 40
+    marginBottom: 64
   },
 
   action: {

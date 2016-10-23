@@ -16,13 +16,13 @@ function admin(req, res, next) {
 }
 
 function client(req, res, next) {
-  if( !req.user || req.user.role !== 'client'){
+  if (!req.user || req.user.role !== 'client') {
     return res.sendStatus(500);
   }
   let client = Client.find(({ user: req.user._id }), (_, clients) => {
     return clients[Object.keys(clients)[0]];
   });
-  if (req.id !== client._id){
+  if (req.id !== client._id) {
     return res.sendStatus(500);
   }
   next();
@@ -91,8 +91,8 @@ router.get('/client', (req, res) => {
   Client
     .find((req.user && req.user.role === 'client') ? { user: req.user._id } : {})
     .populate('invite')
-    .exec(function(err, clients){
-      if(err || !clients){
+    .exec(function (err, clients) {
+      if (err || !clients) {
         res.sendStatus(404);
       }
 
@@ -153,6 +153,10 @@ router.post('/client/:id/note', admin, (req, res) => {
 router.post('/client/:id/payment', client, (req, res) => {
   Client.findById(req.params.id, (_, client) => {
     client.payment_history.push(req.body);
+    if (req.body.amount >= client.monthly_home_payment) {
+      client.payment_streak += 1;
+      client.payment_stars += client.payment_streak >= 3 ? 2 : 1;
+    }
     client.save();
     res.json(client.payment_history);
   });
