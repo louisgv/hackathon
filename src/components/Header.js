@@ -3,7 +3,6 @@ import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router';
 
 import colors from '../styles/colors';
-import buttons from '../styles/buttons';
 
 class Header extends Component {
   constructor(props) {
@@ -18,14 +17,14 @@ class Header extends Component {
     return (
       <div className={css(styles.header)}>
         <Link to="/">
-          <div className={css(styles.logo)}>SituationHandler</div>
+          <div className={css(styles.logo)}>OOP</div>
         </Link>
         {!isLoggedIn &&
         <div className={css(styles.right)}>
           <Link
             to="/login"
             className={css(styles.clientLogin)}>
-            Client Login
+            Tenant Login
           </Link>
         </div>
         }
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    zIndex: 1,
+    zIndex: 1
   },
   brand: {
     display: 'flex',

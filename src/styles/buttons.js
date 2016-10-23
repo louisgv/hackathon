@@ -16,7 +16,7 @@ const button = {
     boxShadow: '0 2px 4px rgba(0, 255, 67, 0.32)'
   },
   ':hover': {
-    boxShadow: '0 0 3px rgba(0,0,0,0.08),0 3px 6px rgba(0,0,0,0.16)',
+    boxShadow: '0 0 3px rgba(0,0,0,0.08),0 3px 6px rgba(0,0,0,0.16)'
   }
 };
 
