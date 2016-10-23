@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {StyleSheet, css} from 'aphrodite';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import { Link } from 'react-router';
 
 import colors from '../styles/colors';
 import buttons from '../styles/buttons';
@@ -14,13 +14,20 @@ class Header extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props;
+    const { isLoggedIn } = this.props;
     return (
       <div className={css(styles.header)}>
-        <Link to="/">SituationHandler</Link>
+        <Link to="/">
+          <div className={css(styles.logo)}>SituationHandler</div>
+        </Link>
         {!isLoggedIn &&
         <div className={css(styles.right)}>
-          <Link to="/login" className={css(buttons.small, buttons.secondary)} style={{marginRight: 16}}>Client Login</Link>
+          <Link
+            to="/login"
+            className={css(buttons.small, buttons.secondary)}
+            style={{marginRight: 16}}>
+            Client Login
+          </Link>
         </div>
         }
       </div>
@@ -32,8 +39,8 @@ const styles = StyleSheet.create({
   header: {
     position: 'relative',
     height: 72,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: 40,
+    paddingRight: 40,
     boxSizing: 'border-box',
     background: 'white',
     display: 'flex',
@@ -53,8 +60,10 @@ const styles = StyleSheet.create({
     backgroundImage: 'url("/logo.svg")',
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
+    fontSize: 0,
     height: 24,
-    width: 88
+    width: 80,
+    marginBottom: -8
   },
   url: {
     marginLeft: 8,

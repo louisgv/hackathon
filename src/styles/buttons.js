@@ -1,4 +1,4 @@
-import {StyleSheet} from 'aphrodite';
+import { StyleSheet } from 'aphrodite';
 
 import colors from './colors';
 
@@ -7,7 +7,7 @@ const button = {
   background: colors.primary,
   color: 'white',
   cursor: 'pointer',
-  transition: 'box-shadow 150ms cubic-bezier(0,0,.2,1), background 0.2s ease',
+  transition: 'all 0.2s ease',
   textDecoration: 'none',
   border: 'none',
   '-webkitAppearance': 'none',
@@ -17,20 +17,31 @@ const button = {
   },
   ':hover': {
     boxShadow: '0 0 3px rgba(0,0,0,0.08),0 3px 6px rgba(0,0,0,0.16)',
-    transition: 'box-shadow 150ms cubic-bezier(0,0,.2,1)'
   }
 };
 
 export default StyleSheet.create({
   xlarge: {
     ...button,
+    background: 'white',
+    border: `2px solid ${colors.primary}`,
+    color: colors.primary,
     alignSelf: 'center',
-    fontSize: 24,
-    height: 64,
-    lineHeight: '64px',
-    paddingLeft: 48,
-    paddingRight: 48,
-    borderRadius: 4
+    fontSize: 20,
+    height: 54,
+    lineHeight: '54px',
+    paddingLeft: 24,
+    paddingRight: 24,
+    borderRadius: 4,
+    boxShadow: 'none',
+    ':focus': {
+      boxShadow: 'none'
+    },
+    ':hover': {
+      boxShadow: 'none',
+      background: colors.primary,
+      color: 'white'
+    }
   },
   large: {
     ...button,
