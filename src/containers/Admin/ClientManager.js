@@ -36,6 +36,7 @@ class ClientManager extends Component {
 
   render() {
     const { client } = this.props;
+    console.log(client.notes);
     return (
       <div className={css(styles.main)}>
         <div className={css(type.pageTitle, styles.title)}>{client.name}</div>
