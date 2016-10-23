@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     zIndex: 1,
-    borderBottom: `1px solid ${colors.border}`
   },
   brand: {
     display: 'flex',
@@ -60,9 +59,9 @@ const styles = StyleSheet.create({
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     fontSize: 0,
-    height: 24,
+    height: 32,
     width: 80,
-    marginBottom: -8
+    marginBottom: -16
   },
   url: {
     marginLeft: 8,
@@ -126,12 +125,12 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   clientLogin: {
-    fontWeight: 800,
+    fontWeight: 600,
     cursor: 'pointer',
     color: colors.dark,
     transition: 'all 0.35s',
     textDecoration: 'none',
-    fontSize: 15,
+    fontSize: 16,
     ':hover': {
       color: colors.primary
     }
