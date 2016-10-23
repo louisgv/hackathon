@@ -7,6 +7,7 @@ import { fetchClients } from '../../actions/clients';
 
 class ClientList extends Component {
   componentDidMount() {
+    console.log(this.props);
     this.props.dispatch(fetchClients());
   }
 
@@ -21,7 +22,7 @@ class ClientList extends Component {
             <div className={css(styles.tableHeader)} style={{order: 3}}>Amount Owed</div>
           </div>
           <div className={css(styles.tableRowSection)}>
-          {clients.map(client => (
+          {clients.slice(0, 20).map(client => (
             <div className={css(styles.tableRow)} onClick={client => this.handleRedirect(client._id) }>
               <Link to={'/admin/client/${client._id}'} key={client._id} className={css(styles.link)}>
                 <div className={css(styles.tableRowItem)} style={{order: 1}}>{client.name}</div>
@@ -30,6 +31,10 @@ class ClientList extends Component {
               </Link>
             </div>
           ))}
+          <div className={css(styles.pagination)}>
+            <span style={{cursor: 'pointer'}} onClick={this.props.dispatch({type})}>Prev</span>
+            <span style={{float: 'right', cursor: 'pointer'}}>Next</span>
+          </div>
           </div>
         </div>
       </div>
@@ -51,7 +56,8 @@ class ClientList extends Component {
 
 function select(state) {
   return {
-    clients: Object.keys(state.clients).map(id => state.clients[id])
+    clients: Object.keys(state.clients).map(id => state.clients[id]),
+    page: 1
   };
 }
 
@@ -112,6 +118,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     textDecoration: 'none'
+  },
+  pagination: {
+    padding: '10px 30px',
+    borderBottom: '1px solid #CCC',
+    background: '#EA8037',
+    color: '#fff',
+    fontSize: '16px',
+    fontWeight: '600'
   }
 });
 
