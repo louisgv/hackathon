@@ -24,8 +24,6 @@ class ClientList extends Component {
   render() {
     const { clients } = this.props;
     const pageCount = Math.ceil(clients.length / 20);
-    console.log(this.state.page, pageCount);
-    console.log(clients);
     return (
       <div className={css(styles.container)}>
         <div className={css(styles.table)}>

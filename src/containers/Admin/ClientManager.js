@@ -330,7 +330,7 @@ class ClientManager extends Component {
                   className={css(styles.action)}
                   onClick={() => {
                     this.addNote('approve');
-                    this.updateClient({status: 'declined'})
+                    this.updateClient({status: 'declined'});
                   }}>
                   Decline {client.name}
                 </div>

@@ -1,72 +1,61 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
-import type from '../styles/type';
-import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { addPayment } from '../actions/clients';
 import InputLabel from './InputLabel';
+import colors from '../styles/colors';
 import buttons from '../styles/buttons';
+import type from '../styles/type';
 
 class PaymentHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
       menuOpen: false,
-      paymentAmount: null
+      paymentAmount: props.monthlyHomePayment || 0
     };
   }
 
   submitPayment() {
-    const {paymentAmount} = this.state;
+    const { paymentAmount } = this.state;
     if (!paymentAmount) {
       return;
     }
-    this.setState({paymentAmount: null});
-    this.props.dispatch(addPayment(this.props.client._id, paymentAmount));
+    this.setState({ paymentAmount: null });
+    this.props.handleAddPayment(paymentAmount);
   }
 
   render() {
-    const { payment_history, monthly_home_payment } = this.props;
+    const { paymentHistory } = this.props;
     return (
-      <div>
+      <div
+        style={{border: `1px solid ${colors.border}`, padding: '8px 16px 16px 16px', borderRadius: 4}}>
         <div className={css(type.subHeading)}>Payment History</div>
-        {payment_history.length ? payment_history.map( ( payment ) => (
-        <div key={payment._id}>
-          <div style={{width: '30%', display: 'inline-block'}}>{moment(payment.paid_on).format('MMM Do, YYYY')}</div>
-          <div style={{height: 30, background: '#ddd', marginBottom: 5, width: '70%', display: 'inline-block'}}>
-            <div style={{
-              width: `${(payment.amount / monthly_home_payment) > 1 ? 100 : (payment.amount / monthly_home_payment) * 100}%`,
-              background: 'green',
-              height: 30}}></div>
+        {paymentHistory && paymentHistory.length ? paymentHistory.map((payment) => (
+          <div key={payment._id} style={{display: 'flex'}}>
+            <div style={{flex: 1}}>
+              {moment(payment.paid_on).format('MMM Do, YYYY')}
+            </div>
+            <div style={{flex: 1}}>${payment.amount}</div>
           </div>
-        </div>
         ))
-        :
-        <div>NO PAYMENTS MADE</div>}
-        <div>
-          <div className={css(type.subHeading)}>Make a Payment</div>
+          :
+          <div style={{textAlign: 'center', color: colors.light}}>No Payments</div>}
+        <div style={{marginTop: 24}}>
           <InputLabel
-            label="Amount"
+            label="Make a payment"
             value={this.state.paymentAmount}
             handleChange={(val) => this.setState({paymentAmount: val})}
             handleEnter={() => this.submitPayment()}/>
           <div
             onClick={() => this.submitPayment()}
             className={css(buttons.large)}
-          >Submit</div>
+          >Submit
+          </div>
         </div>
       </div>
     );
   }
 }
 
-function select(state) {
-  let client = state.clients[Object.keys(state.clients)[0]];
-  return {
-    payment_history: client ? client.payment_history : {},
-    monthly_home_payment: client ? client.monthly_home_payment : {}
-  };
-}
-
-export default connect(select)(PaymentHistory);
+export default PaymentHistory;

@@ -1,7 +1,7 @@
 {
-  "name": "OneSpaceHack",
+  "name": "OOP",
   "version": "1.0.0",
-  "description": "Onespace hackathon node app",
+  "description": "oop is an eviction prevention tool",
   "main": "webpack.config.js",
   "directories": {
     "doc": "docs"
@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "author": "Perry Ratcliff",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "aphrodite": "^0.5.0",
     "aws-sdk": "^2.6.6",

@@ -11,7 +11,6 @@ export function fetchClients() {
     fetch('/api/client', { credentials: 'same-origin' })
       .then(res => res.json())
       .then(clients => {
-        console.log('res', clients);
         dispatch({
           type: RECEIVED_CLIENTS,
           clients
@@ -67,11 +66,10 @@ export function addNote(id, note) {
     })
       .then(res => res.json())
       .then(notes => {
-        console.log(notes);
         dispatch({
           type: CLIENT_UPDATED,
           id,
-          update: {notes}
+          update: { notes }
         });
       });
   };
@@ -86,14 +84,14 @@ export function addPayment(id, amount) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({amount})
+      body: JSON.stringify({ amount })
     })
       .then(res => res.json())
-      .then(payment_history => {
+      .then(update => {
         dispatch({
           type: CLIENT_UPDATED,
           id,
-          update: {payment_history}
+          update
         });
       });
   };

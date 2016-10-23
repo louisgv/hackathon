@@ -153,12 +153,15 @@ router.post('/client/:id/note', admin, (req, res) => {
 router.post('/client/:id/payment', client, (req, res) => {
   Client.findById(req.params.id, (_, client) => {
     client.payment_history.push(req.body);
-    if (req.body.amount >= client.monthly_home_payment) {
+    if (req.body.amount >= (client.monthly_home_payment || 0)) {
       client.payment_streak += 1;
       client.payment_stars += client.payment_streak >= 3 ? 2 : 1;
     }
-    client.save();
-    res.json(client.payment_history);
+    client.save(() => res.json({
+      payment_history: client.payment_history,
+      payment_streak: client.payment_streak,
+      payment_stars: client.payment_stars
+    }));
   });
 });
 
