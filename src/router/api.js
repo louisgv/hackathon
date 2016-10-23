@@ -131,4 +131,12 @@ router.post('/client/:id/note', admin, (req, res) => {
   });
 });
 
+router.post('/client/:id/payment', (req, res) => {
+  Client.findById(req.params.id, (_, client) => {
+    client.payment_history.push(req.amount);
+    client.save();
+    res.json(client.payment_history);
+  });
+});
+
 export default router;

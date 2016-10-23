@@ -75,3 +75,25 @@ export function addNote(id, note) {
       });
   };
 }
+
+export function addPayment(id, amount) {
+  return dispatch => {
+    fetch(`/api/client/${id}/amount`, {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: amount
+    })
+      .then(res => res.json())
+      .then(amount => {
+        dispatch({
+          type: CLIENT_UPDATED,
+          id,
+          update: {amount}
+        });
+      });
+  };
+}
