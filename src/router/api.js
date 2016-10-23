@@ -135,7 +135,7 @@ router.put('/client/:id', admin, (req, res) => {
         mail(
           client.email,
           'Welcome to OOP!',
-          `Congratulations! You have been accepted into the OOP program. To finish registration please go to  localhost:5001/login. You're temp
+          `Congratulations! You have been accepted into the OOP program. To finish registration please go to oop.life/login. You're temp
            password is ${tempPassword}`
         );
       });

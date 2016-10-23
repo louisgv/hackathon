@@ -18,7 +18,7 @@ export default function (invite_id) {
   strVar += '';
   strVar += '';
   strVar += '<p>Accept your invitation by going to the link below:</p>';
-  strVar += `localhost:5001/invite/${invite_id}`;
+  strVar += `oop.life/invite/${invite_id}`;
   strVar += '';
   strVar += '';
   strVar += '';
