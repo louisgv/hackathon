@@ -317,7 +317,7 @@ class ClientManager extends Component {
               Current Status: {client.status}
             </div>
             <LabelWrapper label="Actions:">
-              <div>
+              <div style={{marginTop: -10}}>
                 {client.status === 'pending' &&
                 <div
                   className={css(styles.action)}
