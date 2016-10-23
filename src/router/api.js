@@ -126,16 +126,14 @@ router.put('/client/:id', admin, (req, res) => {
 router.post('/client/:id/note', admin, (req, res) => {
   Client.findById(req.params.id, (_, client) => {
     client.notes.push(req.body);
-    client.save();
-    res.json(client.notes);
+    client.save(() => res.json(client.notes));
   });
 });
 
 router.post('/client/:id/payment', (req, res) => {
   Client.findById(req.params.id, (_, client) => {
     client.payment_history.push(req.amount);
-    client.save();
-    res.json(client.payment_history);
+    client.save(() => res.json(client.payment_history));
   });
 });
 

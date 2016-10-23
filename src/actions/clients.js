@@ -67,6 +67,7 @@ export function addNote(id, note) {
     })
       .then(res => res.json())
       .then(notes => {
+        console.log(notes);
         dispatch({
           type: CLIENT_UPDATED,
           id,
