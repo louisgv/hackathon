@@ -329,7 +329,7 @@ class ClientManager extends Component {
                 <div
                   className={css(styles.action)}
                   onClick={() => {
-                    this.addNote('approve');
+                    this.addNote('decline');
                     this.updateClient({status: 'declined'});
                   }}>
                   Decline {client.name}
@@ -339,7 +339,7 @@ class ClientManager extends Component {
                 <div
                   className={css(styles.action)}
                   onClick={() => {
-                    this.addNote('decline');
+                    this.addNote('approve');
                     this.updateClient({status: 'approved'});
                   }}>
                   Approve {client.name}
