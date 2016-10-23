@@ -21,6 +21,7 @@ class PaymentHistory extends Component {
     if (!paymentAmount) {
       return;
     }
+    this.setState({paymentAmount: null});
     this.props.dispatch(addPayment(this.props.client._id, paymentAmount));
   }
 
@@ -33,7 +34,7 @@ class PaymentHistory extends Component {
           client.payment_history && client.payment_history.length ?
             <ul>
               {client.payment_history.map( ( payment ) => (
-              <li key={payment._id}>{payment.amount}</li>
+              <li key={payment._id}>${payment.amount}</li>
               ))}
             </ul>
             :
