@@ -30,9 +30,11 @@ class PaymentHistory extends Component {
       <div style={{minWidth: '50%'}}>
         <div className={css(type.subHeading)}>Payment History</div>
         {
-          client.paymentHistory && client.paymentHistory.length ?
+          client.payment_history && client.payment_history.length ?
             <ul>
-              client.paymentHistory.forEach( ( payment ) => <li>payment.amount</li> )
+              {client.payment_history.map( ( payment ) => (
+              <li key={payment._id}>{payment.amount}</li>
+              ))}
             </ul>
             :
             <div>NO PAYMENTS MADE</div>
