@@ -18,7 +18,7 @@ export default StyleSheet.create({
     lineHeight: '96px'
   },
   pageTitle: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 600
   },
   title: {
@@ -36,7 +36,8 @@ export default StyleSheet.create({
     color: colors.dark
   },
   label: {
-    fontSize: 13,
+    textTransform: 'uppercase',
+    fontSize: 12,
     fontWeight: 600
   },
   note: {

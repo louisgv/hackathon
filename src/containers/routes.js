@@ -19,7 +19,6 @@ export default function ({ getState }) {
     indexRoute: { component: user && !(user.role === 'admin') ? Dashboard : Landing },
     getChildRoutes(_, cb) {
       if (user) {
-        console.log(user);
         if (user.role === 'admin') {
           return cb(null, [
             ...all,

@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   label: {
-    marginBottom: 2
+    marginBottom: 4
   },
   input: {
     border: `1px solid ${colors.border}`,
     borderRadius: 2,
-    height: 32,
+    height: 40,
     paddingLeft: 8,
     boxSizing: 'border-box',
     background: 'white',

@@ -4,13 +4,14 @@ import { StyleSheet, css } from 'aphrodite';
 import colors from '../styles/colors';
 import type from '../styles/type';
 
-export default ({ label, value, handleChange }) => (
+export default ({ label, value, handleChange, handleEnter }) => (
   <div className={css(styles.main)}>
     <div className={css(type.label, styles.label)}>{label}</div>
     <input
       className={css(styles.input)}
       value={value}
       onChange={e => handleChange(e.target.value)}
+      onKeyPress={e => (!!handleEnter && e.key === 'Enter') && handleEnter()}
     />
   </div>
 );
@@ -20,17 +21,18 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   label: {
-    marginBottom: 2
+    marginBottom: 4
   },
   input: {
     border: `1px solid ${colors.border}`,
-    borderRadius: 2,
-    height: 32,
-    paddingLeft: 8,
+    borderRadius: 4,
+    height: 40,
+    paddingLeft: 12,
     boxSizing: 'border-box',
     width: '100%',
     ':focus': {
-      outline: 'none'
+      outline: 'none',
+      border: `1px solid #C2C9D7`
     }
   }
 });
