@@ -15,6 +15,16 @@ function admin(req, res, next) {
   next();
 }
 
+function client(req, res, next) {
+  let client = Client.find((req.user && req.user.role === 'client') ? { user: req.user._id } : {}, (_, clients) => {
+    return clients[Object.keys(clients)[0]];
+  });
+  if (req.id !== client._id){
+    return res.sendStatus(500);
+  }
+  next();
+}
+
 router.put('/user', (req, res) => {
   if (req.user && req.user._id) {
     delete req.body.admin;
@@ -131,9 +141,9 @@ router.post('/client/:id/note', admin, (req, res) => {
   });
 });
 
-router.post('/client/:id/payment', (req, res) => {
+router.post('/client/:id/payment', client, (req, res) => {
   Client.findById(req.params.id, (_, client) => {
-    client.payment_history.push(req.amount);
+    client.payment_history.push(req.body);
     client.save();
     res.json(client.payment_history);
   });
