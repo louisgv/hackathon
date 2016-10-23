@@ -24,8 +24,7 @@ class Header extends Component {
         <div className={css(styles.right)}>
           <Link
             to="/login"
-            className={css(buttons.small, buttons.secondary)}
-            style={{marginRight: 16}}>
+            className={css(styles.clientLogin)}>
             Client Login
           </Link>
         </div>
@@ -125,6 +124,17 @@ const styles = StyleSheet.create({
     left: -1,
     fontSize: 28,
     color: 'white'
+  },
+  clientLogin: {
+    fontWeight: 800,
+    cursor: 'pointer',
+    color: colors.dark,
+    transition: 'all 0.35s',
+    textDecoration: 'none',
+    fontSize: 15,
+    ':hover': {
+      color: colors.primary
+    }
   }
 });
 
