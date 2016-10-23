@@ -22,16 +22,30 @@ class ClientList extends Component {
           </div>
           <div className={css(styles.tableRowSection)}>
           {clients.map(client => (
-            <div className={css(styles.tableRow)}>
-              <div className={css(styles.tableRowItem)} style={{order: 1}}>{client.name}</div>
-              <div className={css(styles.tableRowItem)} style={{order: 2}}>Pending</div>
-              <div className={css(styles.tableRowItem)} style={{order: 3}}>$100</div>
+            <div className={css(styles.tableRow)} onClick={client => this.handleRedirect(client._id) }>
+              <Link to={'/admin/client/${client._id}'} key={client._id} className={css(styles.link)}>
+                <div className={css(styles.tableRowItem)} style={{order: 1}}>{client.name}</div>
+                <div className={css(styles.tableRowItem)} style={{order: 2}}>{this.getStatus(client)}</div>
+                <div className={css(styles.tableRowItem)} style={{order: 3}}>$100</div>
+              </Link>
             </div>
           ))}
           </div>
         </div>
       </div>
     );
+  }
+
+  getStatus(client){
+    if(client.status === 'approved'){
+      return 'Approved';
+    }
+
+    if(client.invite) {
+      return client.invite.accepted_on == null ? 'Invite Sent' : 'Awaiting Call';
+    }
+
+    return client.status;
   }
 }
 
@@ -53,7 +67,7 @@ const styles = StyleSheet.create({
   table: {
     display: 'flex',
     'flex-flow': 'row wrap',
-    width: '50%',
+    width: '70%',
     margin: '5% auto'
   },
   tableHeaderSection: {
@@ -76,7 +90,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: '100%',
     borderBottom: '1px solid #ccc',
-    padding: '10px 0'
+    padding: '10px 0',
+    ':hover': {
+      background: '#F1F1F1'
+    }
   },
   tableRowItem: {
     flex: '1 auto',
@@ -92,10 +109,9 @@ const styles = StyleSheet.create({
   },
   link: {
     color: '#000',
-    textDecoration: 'none',
-    ':hover': {
-      textDecoration: 'underline'
-    }
+    display: 'flex',
+    width: '100%',
+    textDecoration: 'none'
   }
 });
 

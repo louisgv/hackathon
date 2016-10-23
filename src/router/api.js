@@ -88,9 +88,16 @@ router.put('/invite/:id/accept', (req, res) => {
 });
 
 router.get('/client', (req, res) => {
-  Client.find((req.user && req.user.role === 'client') ? { user: req.user._id } : {}, (_, clients) => {
-    res.json(clients);
-  });
+  Client
+    .find((req.user && req.user.role === 'client') ? { user: req.user._id } : {})
+    .populate('invite')
+    .exec(function(err, clients){
+      if(err || !clients){
+        res.sendStatus(404);
+      }
+
+      res.json(clients);
+    });
 });
 
 router.get('/client/:id', (req, res) => {
